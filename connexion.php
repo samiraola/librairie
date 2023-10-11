@@ -1,3 +1,46 @@
+<?php
+echo "ok";
+session_start();
+//verification des champs
+   if(!empty($_POST['email']) &&!empty($_POST['password']) ){
+
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  //connexion à la base de données
+
+  $connexion = mysqli_connect('localhost', 'root','', 'librairie' );
+  if(!$connexion){
+   die('Erreur de connexion à la Base de Donnée');
+  }
+
+  //selection de la table dans la bbase de donnée
+   $selection = " SELECT * FROM utilisateurs WHERE email='$email' && password='$password' ";
+   $result = mysqli_query($connexion,$selection);
+    if(!$result){
+        echo "oups une erreur c'est produit";
+    }
+    else{
+        echo "ok";
+       
+    }
+    $recupe = mysqli_fetch_assoc($result);
+    var_dump($recupe);
+
+    // verification 
+     if($recupe){
+      $_SESSION['id']=$recupe['id'];
+      echo "validé";
+
+     header('LOCATION: index.php');
+
+     }else{
+      echo "l'utilisateur n'existe pas";
+     }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,206 +59,80 @@
 body {
     width: 100%;
     min-height: 100vh;
-    
-   
-}
-
-nav {
-    display: flex;
-    padding: 10px 30px;
-    background-color: burlywood;
-    justify-content: space-evenly;
-    gap: 2em;
-    align-items: center;
-    color: #fff
-}
-
-nav a {
-    text-decoration: none;
-    color: #fff
-}
-
-nav .logo {
-    padding: 10px;
-    border: 1px solid #fff;
-    font-size: 1.8em;
-}
-
-nav .logo:hover {
-    background-color: #fff;
-    color: burlywood;
-    transition: all .2s ease-in-out;
-}
-
-nav ul {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 1em;
-    list-style: none;
-    align-items: center;
-    flex-grow: 1;
-}
-
-nav ul li {
-    min-width: 100px;
-    padding: 5px;
-}
-
-nav ul li a {
-    font-size: 1.1em;
-}
-
-nav ul .inscription {
-    color: black;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-nav ul .inscription:hover {
-    padding: 12px;
-    transition: all .2s ease-in-out;
-}
-
-nav ul input {
-    min-height: 30px;
-    padding: 5px 10px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-   
-}
-
-@media screen and (max-width: 930px) {
-   nav {
-        flex-direction: column;
-    }
-}
-
-@media screen and (max-width: 730px) {
-    ul {
-        flex-direction: column;
-    }
-
-   nav ul form,
-    input {
-        width: 100%;
-    }
-}
-
-
-
-section {
-    flex-grow: 1;
-    padding: 20px;
-    display: flex;
-    align-items : center;
-    flex-direction: column;
-    width: 25%;
-    height: 50%;
     background: url(images/photo_2023-10-04_16-46-45.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    margin : 0 auto;
-   margin-top : 100px;
-}
-
-#content {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2em;
-    width: 100%;
-    
-    max-width: 1200px;
 }
- #content h3{
-    color: #ffff;
-}
-#content form {
-    width: 100%;
-    max-width: 500px;
+section {
+    width: 350px;
+    height: 450px;
     display: flex;
     flex-direction: column;
-   
-    gap: 1.5em;
-}
-
-#content form .group {
-    display: flex;
-    flex-direction: column;
-}
-#content form label {
-    color: #ffff;
-    width: fit-content;
-}
-#content form input{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 2px solid #fff;
-    padding: 10px;
-    resize: none;
-    color:#fff;
-}
-#content form input[type='submit']{
-    cursor: pointer;
-}
-#content form input[type='submit'] {
-    width: 100%;
-    max-width: fit-content;
-    padding: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid #72582c;
     border-radius: 5px;
-    margin: 0 auto;
-    background-color: burlywood;
-    color: #fff;
-    text-align: center;
+    align-items: center;
 }
-#content form input[type='submit']:hover {
-    
-    border: 1px solid #fff;
-} 
+section h3{
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    padding: 50px;
+}
+section #content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#content input,button{
+    margin: 10px;
+    padding: 10px 15px;
+    outline: none;
+    border-radius: 60px;
+    font-size: 16px;
+}
+#content input{
+    background-color: #ffffff2e;
+    color: #fff;
+    letter-spacing: 1px;
+    text-indent: 35px;
+    border: none;
+    background-image: url(images/icons8-utilisateur-48.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 15px;
+}
+#content input:nth-child(2){
+    background-image: url(images/icons8-débloquer-privé-50.png);
+}
+#content input::placeholder{
+    font-size: 14px;
+    color: #c0b4b4;
+}
+#content button{
+    background-color: #FF9504;
+    font-size: 17px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+}
 
-
-
-
-    </style>
+</style>
     
 </head>
 <body>
-    <nav>
-        <a class="logo"   href="">Livres</a>
-        <ul>
-            <li><a href="./">Accueil</a></li>
-            <li><a href="">Catégories</a></li>
-            <li><a href="connexion.php">Connexion</a></li>
-            <form action="" method="">
-                <input type="search" name="search" id="search" placeholder="rechercher..." >
-            </form>
-            <li><a href="inscription.php" class="inscription" >Inscription</a></li>
-            
-        </ul>
-    </nav>
 <section> 
-    <div id="content">
-            <h3>Connexion</h3>
-            <form action="" method="">
-                <div class="group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" >
-                </div>
-                <div class="group">
-                    <label for="password">Mot passe</label>
-                    <input type="password" name="password" id="password" >
-                </div>
-                <input type="submit" value="Se connecter">
-
-            </form>    
-</section>
-
-   
+    <h3>Connexion</h3>
+    <form action="" method="post">
+        <div id="content">
+            <input type="email" name="email" id="email" placeholder="Email" >
+            <input type="password" name="password" id="password"  placeholder="password">
+            <button>Se connecter</button>
+        </div>
+    </form>    
+</section>  
 </body>
 </html>
