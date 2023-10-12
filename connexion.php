@@ -1,5 +1,4 @@
 <?php
-echo "ok";
 session_start();
 //verification des champs
    if(!empty($_POST['email']) &&!empty($_POST['password']) ){
@@ -32,7 +31,7 @@ session_start();
       $_SESSION['id']=$recupe['id'];
       echo "validé";
 
-     header('LOCATION: index.php');
+     header('LOCATION: connecter/dashbord/index.php');
 
      }else{
       echo "l'utilisateur n'existe pas";

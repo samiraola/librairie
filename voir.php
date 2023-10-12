@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="">
-    <style>
+<style>
         * {
     margin: 0;
     padding: 0;
@@ -102,27 +102,56 @@ nav ul input {
         width: 100%;
     }
 }
-section {
-            padding: 20px;
+        section{
+            width: 100%;
+            height: 400px;
+            border: 1px solid #FF9504;
             display:flex;
-            justify-content:space-evenly;
+            align-items: center;
         }
         #content{
-            width:500px;
-            height:500px;
-            display:flex;
-            justify-content:left;
-            align-items:left;
+            width: 50%;
+            border: 1px solid #FF9504;
+        }
+        .livre{
+            display: flex;
+            align-items: center;
+        }
+        .livre p{
+            display: flex;
+            flex-direction: column;
+            text-decoration: underline;
             
-            margin-right: auto;
-            background-color:red;
         }
-        #content .livre img{
-            width:50%;
-            float:left; 
+        .livre img{
+            width: 250px;
+           
         }
+        .details{
+            display: flex;
+            justify-content: right;
+            align-items: right;
+        }
+        .details button{
+            display: flex;
+            justify-content: right;
+            float: right;
+            text-align: justify;
+        }
+        .details button{
+        background-color: #FF9504;
+        font-size: 17px;
+        text-transform: uppercase;
+        cursor: pointer;
+        border: none;
+        margin: 10px;
+        padding: 10px 15px;
+        outline: none;
+        border-radius: 60px;
+        font-size: 16px;
+        } 
 
-    </style>
+</style>
     
 </head>
 <body>
@@ -139,18 +168,28 @@ section {
             
         </ul>
     </nav>
-    <section>
+    <section class="form">
         <div id="content">
-            <div class="livre">
-                <h3 class="title">Mon Article 1</h3>
-                <img src="images/photo_2023-10-04_16-46-34.jpg"  class="image" alt="">
-                <div class="description">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, libero? Ipsa magnam, eaque
-                        consectetur fuga esse accusamus voluptatem, laudantium quidem nulla nihil maiores iure
-                        veniam, amet ratione facere expedita. Perspiciatis.</p>
+                    <div class="livre">
+                        <img src="images/photo_2023-10-04_16-46-34.jpg"  class="image" alt="">
+                        <div class="desc">
+                            <div class="description">
+                                <span>La grande histoire de l’Afrique</span>
+                                <p> Hors-série Les Grands Dossiers N° 8 - décembre 2019- janvier 2020</p>
+                            </div>
+                        </div>
+                    </div>              
+                            <div class="details">
+                                            
+                                <div class="quantite">
+                                    <p>quantite 1</p>
+                                </div>
+                                <div class="prix">
+                                        <p>15000fr</p>
+                                </div>
+                                <button type="button">supprimer</button>
+                            </div>
                 </div>
-                <div class="details">
-                    <p class="name">Ecrit par : Brou fabien</p>
-                    <p class="date">Le Mardi 10 0ctobre 2023</p>
-                </div>
+        </div>        
+               
     </section>            
