@@ -58,7 +58,7 @@ session_start();
 body {
     width: 100%;
     min-height: 100vh;
-    background: url(images/photo_2023-10-04_16-46-45.jpg);
+    background: url(images/gir.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -75,8 +75,8 @@ section {
     border-radius: 5px;
     align-items: center;
 }
-section h3{
-    font-size: 20px;
+section h2{
+    font-size: 25px;
     font-weight: 300;
     color: #fff;
     padding: 50px;
@@ -109,7 +109,7 @@ section #content{
 }
 #content input::placeholder{
     font-size: 14px;
-    color: #c0b4b4;
+    color: #fff;
 }
 #content button{
     background-color: #FF9504;
@@ -124,7 +124,7 @@ section #content{
 </head>
 <body>
 <section> 
-    <h3>Connexion</h3>
+    <h2>Connexion</h2>
     <form action="" method="post">
         <div id="content">
             <input type="email" name="email" id="email" placeholder="Email" >

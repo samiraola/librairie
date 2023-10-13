@@ -29,7 +29,7 @@ header {
     height: 50vh;
     display: flex;
     padding: 20px 30px;
-    background-image: url(../);
+    background-image: url(../../images/photo_2023-10-04_16-46-34.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     justify-content: space-evenly;
@@ -95,7 +95,7 @@ header .panier{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url(../images/icons8-chariot-48.png);
+    background: url(../../images/icons8-chariot-48.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -141,6 +141,7 @@ section {
 
 #posted .livres img {
     width: 100%;
+    height: 50%;
 }
 
 #posted .livres .title {
@@ -194,9 +195,8 @@ section {
                 width: 350px;
                 height: 120px;
                 display: flex;
-                
                 align-items: center;
-                background-image: url(images/photo_2023-10-04_16-46-50.jpg);
+                background-image: url(../../images/photo_2023-10-04_16-46-50.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center;
@@ -320,7 +320,7 @@ section {
         .photo{
             width: 400px;
             height: 200px;
-            background-image:url(images/mishaalzahed-h4x-Tksufvw-unsplash.jpg);
+            background-image:url(../../images/mishaalzahed-h4x-Tksufvw-unsplash.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -393,42 +393,42 @@ section {
         <h3>Dernière Parutions</h3>
             <div id = "posted">
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
+                    <img src="../../images/Livres_apprendre_histoire_noire_2.jpeg" alt="">
                     <a class="title" href="voir.php">livre1</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
+                    <img src="../../images/9782343222820b.jpeg" alt="">
                     <a class="title" href="voir.php">livre2</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
+                    <img src="../../images/9782218068164_1_75.jpeg" alt="">
                     <a class="title" href="voir.php">livre3</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
+                    <img src="../../images/15738219393_HSGD8_1000.jpeg" alt="">
                     <a class="title" href="voir.php">livre4</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
+                    <img src="../../images/6e636a34e85e38d04b39071a45ef76f61674fc9408a5e0931d83bef60a45a468.jpeg" alt="">
                     <a class="title" href="voir.php">livre5</a>
                     <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
+                        <button type="submit"><a href="/">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
+                    <img src="../../images/81-Qa+1ZBiL._AC_UF350,350_QL50_.jpg" alt="">
                     <a class="title" href="voir.php">livre5</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
