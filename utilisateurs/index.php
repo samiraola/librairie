@@ -9,178 +9,38 @@
     <title>La premiere page</title>
     <link rel="stylesheet" href="./css/index.css">
 <style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-body {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-   
-}
-header {
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    padding: 20px 30px;
-    background-image: url(../../images/photo_2023-10-04_16-46-34.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    justify-content: space-evenly;
-    align-items: center; 
-   color: #fff;
-    
-}
-
-header a {
-    text-decoration: none;
-    color: #fff;
-}
-
-header .logo {
-    font-size: 1.8em;
-}
-
-header .logo:hover {
-    color: burlywood;
-    transition: all .2s ease-in-out;
-}
-
-header ul {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 1em;
-    list-style: none;
-     align-items: center; 
-    flex-grow: 1;
-}
-
-header ul li {
-    min-width: 100px;
-    padding: 5px;
-}
-
-header ul li a {
-    font-size: 1.1em;
-}
-
-header ul .inscription {
-   color: black;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-header ul .inscription:hover {
-    padding: 12px;
-    transition: all .2s ease-in-out;
-}
-
-header ul input {
-    min-height: 30px;
-    padding: 5px 10px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-}
-header .panier{
-    width: 50px;
-    height:50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url(../../images/icons8-chariot-48.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-section {
-    flex-grow: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2em;
-    width: 100%;
-    max-width: 1200px;
-}
-
-#posted {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    gap: 2em;
-}
-
-#posted .livres {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    box-shadow: 0px 0px 5px 1px #aaa;
-    border-radius: 2px;
-    background-color: #fff;
-}
-
-#posted .livres:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 10px 2px #e1e1e1;
-    transition: all .2s ease-in;
-}
-
-#posted .livres img {
-    width: 100%;
-    height: 50%;
-}
-
-#posted .livres .title {
-    margin: 0 auto;
-    padding: 5px;
-    color: #261c85;
-    font-weight: 700;
-    width: fit-content;
-}
-
-#posted .livres .title:hover {
-    color: burlywood;
-    font-weight: 900;
-    transition: all .2s ease-in-out;
-}
-#posted .livres .ajout{
-    padding: 20px;
-    
-    gap: 1.2em; 
-    text-align: center;
-    
-}
-#posted .livres .ajout button{
-    background-color: burlywood;
-
-}
-#posted .livres .ajout button a{
-   text-decoration: none;
-    color: black;
-    border: none;
-    outline: none; 
-    
-}
-/* section deuxieme */
-
         body{
             background: rgba(250, 153, 22, 0.49);
         }
-       
+        .sous-nav{
+        list-style: none;
+        display: none;
+        position: absolute;
+        left : 0;
+        top : 30px;
+        background-color: #fff;
+        width : max-content;
+        padding : 10px;
+        }
+        .sous-nav li a:hover{
+            padding: 6px;
+            background-color : burlywood;
+           
+        }
+        .sous-nav li{
+            text-align : center;
+            margin :5px;
+        }
+        .sous-nav li a{
+            
+            color : #000;
+        }
+        .dessous-nav{
+            position: relative;
+        }
+        .dessous-nav:hover .sous-nav{
+        display: block;
+        }
         .deuxieme{
             width: 100%;
             height: 200px;
@@ -195,8 +55,9 @@ section {
                 width: 350px;
                 height: 120px;
                 display: flex;
+                
                 align-items: center;
-                background-image: url(../../images/photo_2023-10-04_16-46-50.jpg);
+                background-image: url(images/photo_2023-10-04_16-46-50.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center;
@@ -320,7 +181,7 @@ section {
         .photo{
             width: 400px;
             height: 200px;
-            background-image:url(../../images/mishaalzahed-h4x-Tksufvw-unsplash.jpg);
+            background-image:url(images/mishaalzahed-h4x-Tksufvw-unsplash.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -376,15 +237,23 @@ section {
         <a class="logo" href="./">Item librairie</a>
         <ul>
             <li><a href="./">Accueil</a></li>
-            <li><a href="">Catégories</a></li>
+            <li class="dessous-nav">
+                <a href="">Catégories</a>
+                    <ul class="sous-nav">
+                        <li><a href="categorie.php">XVe siècles</a></li>
+                        <li><a href="categorie.php">XVIe siècles</a></li>
+                        <li><a href="categorie.php">XVIIe siècles</a></li>
+                    </ul>
+            </li>
+            <li><a href="../connexion.php">Connexion</a></li>
             <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-            <li><a href="inscription.php" class="inscription">Deconnexion</a></li>
-            <li><a href="" class="profil">profil</a></li>
+            <li><a href="../inscription.php" class="inscription">Inscription</a></li>
+            <li><a href="" class="inscription">Vendre</a></li>
             <div class="panier"></div>
         </ul>
-    </header>
+</header>
 
 
 
@@ -393,47 +262,48 @@ section {
         <h3>Dernière Parutions</h3>
             <div id = "posted">
                 <div class="livres">
-                    <img src="../../images/Livres_apprendre_histoire_noire_2.jpeg" alt="">
+                    <img src="images/Coll85_AfriqueDuSud_Couverture-small.jpeg" width="200px" height="250px" alt="">
                     <a class="title" href="voir.php">livre1</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="../../images/9782343222820b.jpeg" alt="">
+                    <img src="images/s-L1200.webp" width="200px" height="250px" alt="">
                     <a class="title" href="voir.php">livre2</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="../../images/9782218068164_1_75.jpeg" alt="">
+                    <img src="images/15738219393_HSGD8_1000.jpeg" width="200px" height="250px" alt="">
                     <a class="title" href="voir.php">livre3</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="../../images/15738219393_HSGD8_1000.jpeg" alt="">
+                    <img src="images/image.png" width="200px" height="250px" alt="">
                     <a class="title" href="voir.php">livre4</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="../../images/6e636a34e85e38d04b39071a45ef76f61674fc9408a5e0931d83bef60a45a468.jpeg" alt="">
-                    <a class="title" href="voir.php">livre5</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="/">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="../../images/81-Qa+1ZBiL._AC_UF350,350_QL50_.jpg" alt="">
+                    <img src="images/9782218068164_1_75.jpeg" width="200px" height="250px" alt="">
                     <a class="title" href="voir.php">livre5</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
+                <div class="livres">
+                    <img src="images/9782845822962-200x303-1.jpeg" width="200px" height="250px" alt="">
+                    <a class="title" href="voir.php">livre6</a>
+                    <div class="ajout">
+                        <button type="submit"><a href="">Voir+</a></button>
+                    </div>
+                </div>
+                
             </div>
            
     </div>

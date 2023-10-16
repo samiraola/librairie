@@ -6,13 +6,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La premiere page</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <title>La deuxieme page</title>
+    <link rel="stylesheet" href="../css/deuxieme.css">
 <style>
         body{
             background: rgba(250, 153, 22, 0.49);
         }
-       
+        .sous-nav{
+        list-style: none;
+        display: none;
+        position: absolute;
+        left : 0;
+        top : 30px;
+        background-color: #fff;
+        width : max-content;
+        padding : 10px;
+        }
+        .sous-nav li a:hover{
+            padding: 6px;
+            background-color : burlywood;
+           
+        }
+        .sous-nav li{
+            text-align : center;
+            margin :5px;
+        }
+        .sous-nav li a{
+            
+            color : #000;
+        }
+        .dessous-nav{
+            position: relative;
+        }
+        .dessous-nav:hover .sous-nav{
+        display: block;
+        }
         .deuxieme{
             width: 100%;
             height: 200px;
@@ -209,16 +237,24 @@
         <a class="logo" href="./">Item librairie</a>
         <ul>
             <li><a href="./">Accueil</a></li>
-            <li><a href="">Catégories</a></li>
-            <li><a href="connexion.php">Connexion</a></li>
+            <li class="dessous-nav">
+                <a href="">Catégories</a>
+                    <ul class="sous-nav">
+                        <li><a href="categorie.php">XVe siècles</a></li>
+                        <li><a href="categorie.php">XVIe siècles</a></li>
+                        <li><a href="categorie.php">XVIIe siècles</a></li>
+                    </ul>
+            </li>
+            <li><a href="deconnexion.php">Deconnexion</a></li>
             <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-            <li><a href="inscription.php" class="inscription">Inscription</a></li>
+            <li><a href="profil.php" class="inscription">Profil</a></li>
             <li><a href="" class="inscription">Vendre</a></li>
-            <div class="panier"></div>
+           
+            <a href="panier.php" class="panier"></a>
         </ul>
-    </header>
+</header>
 
 
 
@@ -227,47 +263,48 @@
         <h3>Dernière Parutions</h3>
             <div id = "posted">
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
-                    <a class="title" href="voir.php">livre1</a>
+                    <img src="../images/Coll85_AfriqueDuSud_Couverture-small.jpeg" width="100px" height="150px" alt="">
+                    <a class="title" href="../detail.php">livre1</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
-                    <a class="title" href="voir.php">livre2</a>
+                    <img src="../images/s-L1200.webp" width="100px" height="150px" alt="">
+                    <a class="title" href="../detail.php">livre2</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
-                    <a class="title" href="voir.php">livre3</a>
+                    <img src="../images/15738219393_HSGD8_1000.jpeg" width="100px" height="150px" alt="">
+                    <a class="title" href="../detail.php">livre3</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
-                    <a class="title" href="voir.php">livre4</a>
+                    <img src="../images/image.png" width="100px" height="150px" alt="">
+                    <a class="title" href="../detail.php">livre4</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
-                    <a class="title" href="voir.php">livre5</a>
+                    <img src="../images/9782218068164_1_75.jpeg" width="100px" height="150px" alt="">
+                    <a class="title" href="../detail.php">livre5</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
                 <div class="livres">
-                    <img src="images/photo_2023-10-04_16-46-34.jpg" alt="">
-                    <a class="title" href="voir.php">livre5</a>
+                    <img src="../images/9782845822962-200x303-1.jpeg" width="100px" height="150px" alt="">
+                    <a class="title" href="../detail.php">livre6</a>
                     <div class="ajout">
                         <button type="submit"><a href="">Voir+</a></button>
                     </div>
                 </div>
+                
             </div>
            
     </div>

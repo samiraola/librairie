@@ -27,15 +27,15 @@ session_start();
     var_dump($recupe);
 
     // verification 
-     if($recupe){
+    if($recupe){
       $_SESSION['id']=$recupe['id'];
       echo "validé";
 
-     header('LOCATION: connecter/dashbord/index.php');
+    header('LOCATION: utilisateurs/connecter/index.php');
 
-     }else{
+    }else{
       echo "l'utilisateur n'existe pas";
-     }
+    }
 }
 
 ?>
@@ -58,7 +58,7 @@ session_start();
 body {
     width: 100%;
     min-height: 100vh;
-    background: url(images/gir.jpeg);
+    background: url(./utilisateurs/images/gir.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -99,13 +99,13 @@ section #content{
     letter-spacing: 1px;
     text-indent: 35px;
     border: none;
-    background-image: url(images/icons8-utilisateur-48.png);
+    background-image: url(./utilisateurs/images/icons8-utilisateur-48.png);
     background-repeat: no-repeat;
     background-size: 20px;
     background-position: 15px;
 }
 #content input:nth-child(2){
-    background-image: url(images/icons8-débloquer-privé-50.png);
+    background-image: url(./utilisateurs/images/icons8-débloquer-privé-50.png);
 }
 #content input::placeholder{
     font-size: 14px;

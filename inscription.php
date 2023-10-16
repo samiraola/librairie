@@ -4,7 +4,7 @@
     return    trim(strip_tags($valeur));
 }
 
-if(!empty($_POST['firstname']) &&  !empty($_POST['lastname']) &&  !empty($_POST['email'])  &&  !empty($_POST['password'])  && !empty($_POST['cpassword'])){
+if((!empty($_POST['firstname'])) &&  !empty($_POST['lastname']) &&  !empty($_POST['email'])  &&  !empty($_POST['password'])  && !empty($_POST['cpassword'])){
 
 //recuperation des données
 $firstname =escape($_POST['firstname']);
@@ -79,7 +79,7 @@ if(!isset($err_firstname) && !isset($err_lastname) && !isset($err_email) && !iss
 body {
     width: 100%;
     min-height: 100vh;
-    background: url(images/photo_2023-10-04_16-46-45.jpg);
+    background: url(./utilisateurs/images/gir.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -121,22 +121,22 @@ section #content{
     letter-spacing: 1px;
     text-indent: 35px;
     border: none;
-    background-image: url(images/icons8-utilisateur-48.png);
+    background-image: url(./utilisateurs/images/icons8-utilisateur-48.png) ;
     background-repeat: no-repeat;
     background-size: 20px;
     background-position: 15px;
 }
 #content input:nth-child(5){
-    background-image: url(images/icons8-débloquer-privé-50.png);
+    background-image: url(./utilisateurs/images/icons8-débloquer-privé-50.png);
 }
 #content input:nth-child(6){
-    background-image: url(images/icons8-débloquer-privé-50.png);
+    background-image: url(./utilisateurs/images/icons8-débloquer-privé-50.png);
 }
 #content input:nth-child(3){
-    background-image: url(images/icons8-email-80.png);
+    background-image: url(./utilisateurs/images/icons8-email-80.png);
 }
 #content input:nth-child(4){
-    background-image: url(images/icons8-image-50.png);
+    background-image: url(./utilisateurs/images/icons8-image-50.png);
 }
 #content input::placeholder{
     font-size: 14px;
