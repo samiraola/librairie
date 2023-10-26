@@ -36,18 +36,25 @@ header{
 .navbar .logo{
     font-size: 2em;
     font-weight: bold;
+    text-decoration: none;
 }
 .navbar .nav-links ul{
     display: flex;
+    
 }
 .navbar .nav-links ul li{
     margin: 20px 25px;
     
+    list-style: none;
 
+}
+.navbar .nav-links ul li a{
+    text-decoration: none;
 }
  .navbar .nav-links ul li a:hover{
     color: #ed3c57;
-}  
+}
+ 
 .navbar .nav-links ul li.active a{
     color: #ed3c57;
     font-weight: 600;
@@ -129,6 +136,8 @@ header{
         font-weight : bold;
         margin :10px;
         font-size : 0.8rem;
+        list-style: none;
+        text-decoration: none;
     }
     .sous-nav  li a{
         color : #000;
@@ -170,29 +179,6 @@ header{
     background-repeat: no-repeat;
     background-position: center;
 }
+/* Style du conteneur de section */
 
-#posted .livres{
-    
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    justify-content: center;
-    /* background-color: blueviolet; */
-    flex-wrap: wrap;
-    flex-grow: 1;
-}
-.image{
-    width: 100%;
-    height: 40%;
-    /* background-color: goldenrod; */
-}
-#posted .livres img{
-    width: 250px;
-    height: 250px;
-}
-.livres .livre{
-    width: 50%;
-    height: 60%;
-    /* background-color: green; */
-}
 

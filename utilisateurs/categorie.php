@@ -8,6 +8,13 @@ if (!$connexion) {
     die("Une erreur est survenue lors de la liason avec la base de donnée. Veuillez réessayer plus tard!");
 }
 
+$requete = "SELECT * FROM categorie";
+$query = mysqli_query($connexion,$requete);
+
+if($query){
+    $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
+    
+}
 $requete2 = "SELECT * FROM categorie";
 $query2 = mysqli_query($connexion,$requete2);
 
@@ -41,7 +48,80 @@ if($query2){
     <title>La premiere page</title>
     <link rel="stylesheet" href="./css/categorie.css">
 <style>
+    section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+}
 
+/* Style du titre de la catégorie */
+h3 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+/* Style du conteneur des livres */
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Style d'un livre individuel */
+.livres {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.livres:hover {
+    transform: translateY(-5px);
+}
+
+/* Style de l'image du livre */
+.image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Style du titre du livre */
+.livre p {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Style du bouton "Voir+" */
+.ajout {
+    text-align: center;
+}
+
+.ajout button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.ajout button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.ajout button:hover {
+    background-color: #0056b3;
+}
 </style>
 </head>
 <body>
@@ -53,8 +133,8 @@ if($query2){
                 <li class="dessous-nav">
                 <a href="">Catégories</a>
                     <ul class="sous-nav">
-                        <?php foreach($catLivres as $value) : ?>
-                    <li><a href="categorie.php?id=<?php echo $value['id_categorie']; ?>"><?php echo $value['titre'] ; ?></a></li>
+                        <?php foreach($result as $value) : ?>
+                    <li><a href="categorie.php?id=<?php echo $value['id']; ?>"><?php echo $value['titre'] ; ?></a></li>
                        
                         <?php endforeach; ?>
                     </ul>
