@@ -48,7 +48,7 @@ if($query){
 .hero a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #007bff;
     color: #fff;
     text-decoration: none;
 }
@@ -64,14 +64,12 @@ if($query){
         #posted .livres .ajout{
            padding : 30px;
         }
-        #posted .livres .title{
-           
-        }
+        
         #posted .livres .ajout button{
             width : 100%;
             height : 30px;
             border : none;
-            background-color: #37a6ff;
+            background-color: #007bff;
         }
         #posted .livres .ajout button:hover{
             border : 1px solid white;
@@ -139,7 +137,8 @@ if($query){
             outline: none;
             border-radius: 60px;
             font-size: 16px;
-            background-color: #FF9504;
+            color: #fff;
+            background-color: #007bff;
             font-size: 17px;
             text-transform: uppercase;
             cursor: pointer;
@@ -210,7 +209,7 @@ if($query){
 
 .send-button,
 .subscribe-button {
-    background-color: #333;
+    background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -228,25 +227,15 @@ if($query){
             margin-top : 50px;
             width: 400px;
             height: 300px;
-            background-color:grey;
+            background-color:#007bff;
         }
-        .footer{
+        footer{
             width : 100%;
             height: 50px;
-            background-color:grey;
-            margin-top: 400px;
+            line-height: 50px;
+            background-color:#007bff;
+           
         }
-        .navbar span{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 95px;
-            height: 100%;
-            background: linear-gradient(45deg,#4f1919,#ff3333);
-}
-        .navbar a:nth-child(1):hover ~ span{
-            left :0;
-}
 
 </style>
 </head>
@@ -271,8 +260,8 @@ if($query){
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
                 <li><a href="inscription.php" class="inscription">inscription</a></li>
-                <li><a href="" class="inscription">Vendre</a></li>
-                <a  class ="panier" href=""></a>
+                <li><a href="vendre.php" class="inscription">Vendre</a></li>
+                <a  class ="panier" href="connexion.php"></a>
                 
             </ul>
         </div>

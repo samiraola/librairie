@@ -93,7 +93,7 @@ section {
     
     flex-direction: column;
     backdrop-filter: blur(5px);
-    border: 1px solid #72582c;
+    border: 1px solid #007bff;
     border-radius: 5px;
     align-items: center;
 }
@@ -143,7 +143,7 @@ section #content{
     color: #c0b4b4;
 }
 #content button{
-    background-color: #ed3c57;
+    background-color: #007bff;
     font-size: 17px;
     text-transform: uppercase;
     cursor: pointer;

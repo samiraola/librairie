@@ -46,6 +46,7 @@ if($query2){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La premiere page</title>
+    
     <link rel="stylesheet" href="./css/categorie.css">
 <style>
     section {
@@ -143,11 +144,10 @@ h3 {
                 <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-                <li><a href="inscription.php" class="inscription">Inscrption</a></li>
+                <li><a href="inscription.php" class="inscription">Inscription</a></li>
                 <li><a href="" class="inscription">Vendre</a></li>
-                <li class="panier">
-                <a href="panier.php" class="panier"><span class="number"><?php echo $nb_panier ?? 0; ?></span></a>
-               
+                 <a href="connexion.php" class="panier"><span class="number"><?php echo $nb_panier ?? 0; ?></span></a>
+                
                 
             </ul>
         </div>

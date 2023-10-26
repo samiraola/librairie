@@ -223,14 +223,14 @@ section{
 }
 #posted .livres .ajout button{
     
-    background-color: burlywood;
+    background-color: #007bff;
 
 }
 #posted .livres .ajout button a{
     width: 200px;
     height: 200px;
    text-decoration: none;
-    color: black;
+    color: #007bff;
     border: none;
     outline: none; 
     
@@ -238,7 +238,7 @@ section{
 footer {
     margin-top: 50px;
     text-align: center;
-    background-color: #333;
+    background-color: #007bff;
     color: #fff;
     padding: 10px 0;
 }

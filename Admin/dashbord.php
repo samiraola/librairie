@@ -93,7 +93,7 @@
         background-size : cover;
         background-repeat : no-repeat;
         height :100vh;
-        transition: all .5s:
+        transition: all .5s;
     }
     .dashboard {
     display: flex;

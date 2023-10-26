@@ -80,7 +80,7 @@ section {
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(5px);
-    border: 1px solid #72582c;
+    border: 1px solid #007bff;
     border-radius: 5px;
     align-items: center;
 }
@@ -121,7 +121,8 @@ section #content{
     color: #fff;
 }
 #content button{
-    background-color: #FF9504;
+    background-color: #007bff;
+    color: #fff;
     font-size: 17px;
     text-transform: uppercase;
     cursor: pointer;
