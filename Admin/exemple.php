@@ -1,0 +1,10 @@
+color : texte #ffffff;
+color : fond #3D2424;
+fond avec le blanck : #4F1212;
+fond : #460101;
+fond : #421428;
+fond : #090D11;
+fond : #020303;
+fond : "000502;
+fond : 17.21;
+#150905;

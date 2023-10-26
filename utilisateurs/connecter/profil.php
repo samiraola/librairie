@@ -57,7 +57,25 @@ if (isset($recuperation['id'])) {
 } else {
     echo "ID non défini.";
 }
+$requete2 = "SELECT * FROM categorie";
+$query2 = mysqli_query($connexion,$requete2);
 
+if($query2){
+    $categories = mysqli_fetch_all($query2,MYSQLI_ASSOC);
+    $catLivres = [];
+
+    if($categories){
+        foreach($categories as $cat){
+            $id_categorie = $cat['id'];
+            $requete = "SELECT * FROM livres WHERE id_categorie = '$id_categorie' ";
+            $query = mysqli_query($connexion,$requete);
+            if($query) {
+                $livres = mysqli_fetch_all($query,MYSQLI_ASSOC);
+                $catLivres[]=['livres' => $livres, "categorie" => $cat['titre'], "id_categorie" => $cat['id']];
+            }
+        }
+    }
+}
 
 ?>
 
@@ -88,6 +106,41 @@ body {
     overflow-x: hidden;
    
 }
+.sous-nav{
+        list-style: none;
+        display: none;
+        position: absolute;
+        left : 0;
+        top : 30px;
+        background-color: #fff;
+        width : 200px;
+        
+       
+        }
+        .sous-nav li a:hover{
+            padding: 6px;
+            background-color : burlywood;
+           
+        }
+        .sous-nav li{
+            display: flex;
+            flex-direction : column;
+            justify-content: center;
+            font-weight : bold;
+            margin :5px;
+            font-size : 0.8rem;
+        }
+        .sous-nav li a{
+            
+            color : #000;
+        }
+        .dessous-nav{
+            position: relative;
+        }
+        .dessous-nav:hover .sous-nav{
+        display: block;
+        }
+        
 header {
     width: 100%;
     height: 50vh;
@@ -280,7 +333,15 @@ main {
         <a class="logo" href="./">Item librairie</a>
         <ul>
             <li><a href="./">Accueil</a></li>
-            <li><a href="">Catégories</a></li>
+            <li class="dessous-nav">
+                <a href="">Catégories</a>
+                <ul class="sous-nav">
+                    <?php foreach($categories as $valeur) : ?>
+                <li><a href="categorie.php#section<?php echo $valeur['id']; ?>"><?php echo $valeur['titre'] ; ?></a></li>
+                    
+                    <?php endforeach; ?>
+                </ul>
+            </li>
             <li><a href="connexion.php">Deconnexion</a></li>
             <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">

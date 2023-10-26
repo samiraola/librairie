@@ -17,7 +17,7 @@
         }
 
         # On récupère l'article en fonction de l'id
-        $sql = "SELECT * FROM articles WHERE id = ?";
+        $sql = "SELECT * FROM livres WHERE id = ?";
         $stmt = mysqli_prepare($connection, $sql); # On prépare la requête (évite les injections SQL)
         $query = mysqli_stmt_bind_param($stmt, "i", $article_id); 
         mysqli_stmt_execute($stmt);
@@ -48,7 +48,7 @@
 
                     # Si l'ajout se passe bien on affiche un message de succès
                     if(mysqli_affected_rows($connection)>0){
-                        header('Location: ./pannier.php');
+                        header('Location: ./panier.php');
                     }else{
                         # Sinon affiche une erreur
                         echo "Oops! Une erreur s'est produite lors de la modification des données... Veuillez réessayer plus tard";;
@@ -63,7 +63,7 @@
 
                     # Si l'ajout se passe bien on affiche un message de succès
                     if(mysqli_affected_rows($connection)>0){
-                        header('Location: ./pannier.php');
+                        header('Location: ./panier.php');
                     }else{
                         # Sinon affiche une erreur
                         echo "Oops! Une erreur s'est produite lors de l'insertion des données... Veuillez réessayer plus tard";;

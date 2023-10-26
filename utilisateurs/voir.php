@@ -8,8 +8,9 @@ if (!$connection) {
 }
 
 # Vérifie si le paramètre article_id existe
-if (!empty($_GET['article_id'])) {
-    $article_id = (int) $_GET['article_id']; # Conversion en int
+if (!empty($_GET['id'])) {
+    
+    $article_id = (int) $_GET['id']; # Conversion en int
 
     # Si la conversion ne retourne pas de valeur on le ramène à l'accueil
     if (!$article_id) {
@@ -17,7 +18,7 @@ if (!empty($_GET['article_id'])) {
     }
 
     # On récupère l'article en fonction de l'id
-    $sql = "SELECT * FROM articles WHERE id = ?";
+    $sql = "SELECT * FROM livres WHERE id = ?";
     $stmt = mysqli_prepare($connection, $sql); # On prépare la requête (évite les injections SQL)
     $query = mysqli_stmt_bind_param($stmt, "i", $article_id);
     mysqli_stmt_execute($stmt);
@@ -66,14 +67,17 @@ if ($nb_query) {
 body {
     width: 100%;
     min-height: 100vh;
-    
    
 }
 
 nav {
     display: flex;
     padding: 10px 30px;
-    background-color: burlywood;
+    backdrop-filter: blur(8px);
+    background : url(images/johnny-briggs-n5woEfyDobk-unsplash.jpg);
+    background-size : cover;
+    background-repeat : no-repeat;
+    background-position : center;
     justify-content: space-evenly;
     gap: 2em;
     align-items: center;
@@ -92,7 +96,7 @@ nav .logo {
 }
 
 nav .logo:hover {
-    background-color: #fff;
+    background-color: #ed3c57;
     color: burlywood;
     transition: all .2s ease-in-out;
 }
@@ -128,6 +132,7 @@ nav ul .inscription:hover {
 }
 
 nav ul input {
+    
     min-height: 30px;
     padding: 5px 10px;
     outline: none;
@@ -153,21 +158,27 @@ nav ul input {
     }
 }
         section{
-            width: 100%;
-            height: 400px;
-            border: 1px solid #FF9504;
             display:flex;
             align-items: center;
             justify-content : center;
-            margin : 0 auto;
+         
+
 
         }
         #content{
+            width : 80%;
+            height : 80%;
             padding: 20px;
             display: flex;
+            margin-top : 75px;
             flex-direction: column;
-            gap: 2em;
-            border: 1px solid #FF9504;
+            align-items: center;
+            justify-content : center;
+            background-color:white;
+            border: 5px solid grey;
+        }
+        #content h2{
+           
         }
         .livre{
             display: flex;
@@ -180,13 +191,19 @@ nav ul input {
         }
         .livre p{
             display: flex;
+            
             flex-direction: column;
             text-decoration: underline;
             
         }
         .livre img{
-            width: 250px;
-           
+            
+            width: 150px;
+            border-radius : 20px;
+        }
+        h2{
+            white : white;
+            text-align : center;
         }
         .info{
             padding: 20px;
@@ -195,7 +212,7 @@ nav ul input {
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 1em;
+            gap: 2em;
         }
         .info *{
             border: 1px solid;
@@ -203,18 +220,22 @@ nav ul input {
             flex-grow: 1;
         }
         .info h4{
-            color: #0000008e;
+           color: #0000008e; 
+           
         }
         .info p{
+            
             font-size: 1.2em;
             font-weight: bold
         }
         .desc{
+            
             display: flex;
             justify-content: space-between;
             padding: 10px;
         }
         .description {
+         
             text-align: justify;
         }
         a{
@@ -228,12 +249,13 @@ nav ul input {
             color: #ffffff;
             padding: 5px;
             border-radius: 5px;
-            background-color: burlywood;
-            width: 25%;
+            background-color: crimson;
+            max-width: auto;
             margin: 0 auto;
         }
         .ajout:hover{
-            background-color: rgb(176, 110, 22);
+            background-color: grey;
+            
         }
 
 </style>
@@ -241,7 +263,7 @@ nav ul input {
 </head>
 <body>
     <nav>
-        <a class="logo"   href="">Livres</a>
+        <a class="logo"   href="">Item-librairie</a>
         <ul>
             <li><a href="./">Accueil</a></li>
             <li><a href="">Catégories</a></li>
@@ -255,12 +277,12 @@ nav ul input {
     </nav>
     <section class="form">
         <div id="content">
-            <h2>Détail de l'article : <?php echo ucwords($article['nom']) ?>  </h2>
+            <h2>Détail de l'article : <?php echo ucwords($article['titre']) ?>  </h2>
                     <div class="livre">
-                    <img src="<?php echo $article['image'] ?>" alt="<?php echo $article['nom'] ?>">
+                    <img src="<?php echo $article['image'] ?>" alt="<?php echo $article['titre'] ?>">
                         <div class="desc">
                             <div class="info">
-                                <h4><?php echo ucwords($article['nom']) ?></h4></h4>
+                                <h4><?php echo ucwords($article['titre']) ?></h4>
                                 
                                 <p class="prix"><?php echo number_format($article['prix'], 2, '.') ?> fcfa</p>
                                 <p>Stock : <?php echo $article['stock'] ?></p>
@@ -270,7 +292,7 @@ nav ul input {
                             <div class="description">
                                             
                             <p><?php echo $article['description'] ?></p>
-                               <a href="Ajout.php" class="ajout"  >Ajoutez au panier</a>
+                               <a href="./connexion.php"class="ajout" >Ajoutez au panier</a>
                             </div>
                 </div>
         </div>        

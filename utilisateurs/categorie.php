@@ -1,5 +1,37 @@
 <?php
 
+# On se connecte à notre base de donnée
+$connexion = mysqli_connect('localhost', 'root', '', 'librairie');
+
+# Si la connexion n'a pas aboutie, on affiche une erreur
+if (!$connexion) {
+    die("Une erreur est survenue lors de la liason avec la base de donnée. Veuillez réessayer plus tard!");
+}
+
+$requete2 = "SELECT * FROM categorie";
+$query2 = mysqli_query($connexion,$requete2);
+
+if($query2){
+    $categories = mysqli_fetch_all($query2,MYSQLI_ASSOC);
+    $catLivres = [];
+
+    if($categories){
+        foreach($categories as $cat){
+            $id_categorie = $cat['id'];
+            $requete = "SELECT * FROM livres WHERE id_categorie = '$id_categorie' ";
+            $query = mysqli_query($connexion,$requete);
+            if($query) {
+                $livres = mysqli_fetch_all($query,MYSQLI_ASSOC);
+                $catLivres[]=['livres' => $livres, "categorie" => $cat['titre'], "id_categorie" => $cat['id']];
+                
+            }
+        }
+    }
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,144 +41,65 @@
     <title>La premiere page</title>
     <link rel="stylesheet" href="./css/categorie.css">
 <style>
-        body{
-            background: rgba(250, 153, 22, 0.49);
-        }
-        .sous-nav{
-        list-style: none;
-        display: none;
-        position: absolute;
-        left : 0;
-        top : 30px;
-        background-color: #fff;
-        width : max-content;
-        padding : 10px;
-        }
-        .sous-nav li a:hover{
-            padding: 6px;
-            background-color : burlywood;
-           
-        }
-        .sous-nav li{
-            text-align : center;
-            margin :5px;
-        }
-        .sous-nav li a{
-            
-            color : #000;
-        }
-        .dessous-nav{
-            position: relative;
-        }
-        .dessous-nav:hover .sous-nav{
-        display: block;
-        }
-
-        
 
 </style>
 </head>
 <body>
-<header>
-        <a class="logo" href="./">Item librairie</a>
-        <ul>
-            <li><a href="./">Accueil</a></li>
-            <li class="dessous-nav">
+<nav class="navbar">
+        <a href="./" class="logo">Item-librairie</a>
+        <div class="nav-links ">
+            <ul>
+                <li class="active"><a href="./">Accueil</a></li>
+                <li class="dessous-nav">
                 <a href="">Catégories</a>
                     <ul class="sous-nav">
-                        <li><a href="#section1">XVe siècles</a></li>
-                        <li><a href="#section2">XVIe siècles</a></li>
-                        <li><a href="#section3">XVIIe siècles</a></li>
+                        <?php foreach($catLivres as $value) : ?>
+                    <li><a href="categorie.php?id=<?php echo $value['id_categorie']; ?>"><?php echo $value['titre'] ; ?></a></li>
+                       
+                        <?php endforeach; ?>
                     </ul>
             </li>
-            <li><a href="../connexion.php">Connexion</a></li>
-            <form action="" method="post">
+                <li><a href="connexion.php">Connexion</a></li>
+                <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-            <li><a href="../inscription.php" class="inscription">Inscription</a></li>
-            <li><a href="" class="inscription">Vendre</a></li>
-            <div class="panier"></div>
-        </ul>
-</header>
-<section id="section1">
-<div id ="content">
-        <h3>Categorie du XVe siècles</h3>
-            <div id = "posted">
-                <div class="livres">
-                    <img src="images/Coll85_AfriqueDuSud_Couverture-small.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre1</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/s-L1200.webp" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre2</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/15738219393_HSGD8_1000.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre3</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-</div>    
-</section>
-<section id="section2">
-<div id ="content">
-        <h3>Categorie du XVIe siècles</h3>
-            <div id = "posted">
-                <div class="livres">
-                    <img src="images/Coll85_AfriqueDuSud_Couverture-small.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre1</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/s-L1200.webp" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre2</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/15738219393_HSGD8_1000.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre3</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-</div>    
-</section>
-<section id="section3">
-<div id ="content">
-        <h3>Categorie du XVIIe siècles</h3>
-            <div id = "posted">
-                <div class="livres">
-                    <img src="images/Coll85_AfriqueDuSud_Couverture-small.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre1</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/s-L1200.webp" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre2</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/15738219393_HSGD8_1000.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre3</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-</div>    
-</section>
+                <li><a href="inscription.php" class="inscription">Inscrption</a></li>
+                <li><a href="" class="inscription">Vendre</a></li>
+                <li class="panier">
+                <a href="panier.php" class="panier"><span class="number"><?php echo $nb_panier ?? 0; ?></span></a>
+               
+                
+            </ul>
+        </div>
+        <img src="./images/images.png" alt="" class="menu-hamberger">
+    </nav>
+    <header>
 
+    </header>
+<?php foreach($catLivres as $datas):?>
+<section id="section<?php echo $datas['id_categorie']; ?>">
+    <div id ="content">
+            <h3>
+            <?php echo $datas['categorie'];  ?>
+            </h3>
+                <div id = "posted">
+                    <?php foreach($datas['livres'] as $livre) : ?>
+                    <div class="livres">
+                        <div class="image">
+                            <img src="<?php echo $livre['image']  ?>"  alt="">
+                        </div>
+                        <div class="livre">
+                        <p><?php echo $livre['titre'];   ?></p>
+                        <div class="ajout">
+                            <button type="submit"><a  href="./voir.php?id=<?php echo $livre['id']; ?>" >Voir+</a></button>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                        </div>
+                       
+                </div>
+                
+    </div>    
+</section>
+<?php endforeach; ?>
+</html>

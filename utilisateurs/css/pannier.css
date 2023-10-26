@@ -1,5 +1,4 @@
-
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,8 +11,8 @@ body {
     flex-direction: column;
     overflow-x: hidden;
    
-}
-header {
+} */
+/* header {
     width: 100%;
     height: 50vh;
     display: flex;
@@ -98,80 +97,6 @@ header .panier{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}
+} */
 
-section {
-    flex-grow: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2em;
-    width: 100%;
-    max-width: 1200px;
-}
-
-#posted {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    gap: 2em;
-}
-
-#posted .livres {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    box-shadow: 0px 0px 5px 1px #aaa;
-    border-radius: 2px;
-    background-color: #fff;
-}
-
-#posted .livres:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 10px 2px #e1e1e1;
-    transition: all .2s ease-in;
-}
-
-#posted .livres img {
-    width: 100%;
-    height: 50%;
-}
-
-#posted .livres .title {
-    margin: 0 auto;
-    padding: 5px;
-    color: #261c85;
-    font-weight: 700;
-    width: fit-content;
-}
-
-#posted .livres .title:hover {
-    color: burlywood;
-    font-weight: 900;
-    transition: all .2s ease-in-out;
-}
-#posted .livres .ajout{
-    padding: 20px;
-    
-    gap: 1.2em; 
-    text-align: center;
-    
-}
-#posted .livres .ajout button{
-    background-color: burlywood;
-
-}
-#posted .livres .ajout button a{
-   text-decoration: none;
-    color: black;
-    border: none;
-    outline: none; 
-    
-}
 /* section deuxieme */

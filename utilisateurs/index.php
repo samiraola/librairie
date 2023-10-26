@@ -1,4 +1,22 @@
 <?php
+$connexion = mysqli_connect('localhost','root', '','librairie');
+
+$requete1 = "SELECT * FROM livres";
+$query1 = mysqli_query($connexion,$requete1);
+
+if(!$query1){
+    echo "OOps! Une erreur est survenue, veuillez réessayer plus tard!";
+} else{
+    $articles = mysqli_fetch_all($query1,MYSQLI_ASSOC); 
+}
+
+$requete = "SELECT * FROM categorie";
+$query = mysqli_query($connexion,$requete);
+
+if($query){
+    $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
+    
+}
 
 ?>
 <!DOCTYPE html>
@@ -9,67 +27,90 @@
     <title>La premiere page</title>
     <link rel="stylesheet" href="./css/index.css">
 <style>
-        body{
-            background: rgba(250, 153, 22, 0.49);
+    .hero {
+    text-align: center;
+    background-image: url('hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}
+
+        #posted .livres{
+            width : 200px;
+            height : 300px;
         }
-        .sous-nav{
-        list-style: none;
-        display: none;
-        position: absolute;
-        left : 0;
-        top : 30px;
-        background-color: #fff;
-        width : max-content;
-        padding : 10px;
+        #posted .livres img{
+            width : 100%;
+            height : 200px;
         }
-        .sous-nav li a:hover{
-            padding: 6px;
-            background-color : burlywood;
+        #posted .livres .ajout{
+           padding : 30px;
+        }
+        #posted .livres .title{
            
         }
-        .sous-nav li{
-            text-align : center;
-            margin :5px;
+        #posted .livres .ajout button{
+            width : 100%;
+            height : 30px;
+            border : none;
+            background-color: #37a6ff;
         }
-        .sous-nav li a{
-            
-            color : #000;
+        #posted .livres .ajout button:hover{
+            border : 1px solid white;
+
         }
-        .dessous-nav{
-            position: relative;
-        }
-        .dessous-nav:hover .sous-nav{
-        display: block;
+        .livres .ajout button a{
+            text-decoration: none;
+            color : white;
+           
         }
         .deuxieme{
-            width: 100%;
+            width: 80%;
             height: 200px;
-            background-color: rgba(0, 0, 0, 0.39);
-            backdrop-filter: blur(5px);
             display: flex;
+            justify-content : center;
+            align-items: center;
             border: 1px solid #72582c;
             border-radius: 5px;
-            
+           margin-left : 120px;
         }
         .deuxieme .image{
-                width: 350px;
-                height: 120px;
-                display: flex;
+            width: 300px;
+            height: 170px;
+            display: flex;
+            border-radius : 20px;
+            justify-content : center;
+            align-items: center;
+            background-image: url(images/photo_2023-10-04_16-46-50.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
                 
-                align-items: center;
-                background-image: url(images/photo_2023-10-04_16-46-50.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                margin-top: 35px;
         }
-        .deuxieme .recherche:nth-child(2){
-           margin-left: auto;
+         .deuxieme .recherche:nth-child(2){
            display: flex;
           align-items: center;
-          flex-direction: column;
-          align-items:center;
-        }
+          justify-content : center;
+          
+        } 
         .deuxieme .recherche{
             margin-top: 70px;
         }
@@ -104,206 +145,169 @@
             cursor: pointer;
             border: none;
         }
-        .contactez-nous{
-            width:100%;
-           height:620px;
-            
-            border: 1px solid #72582c;         
-        }
-        .contactez-nous h3{
-            text-align:center;
-        }
-        form{
-            display:flex;
-            justify-content:space-around;
-        }
-        form .un{
-           display:flex;
-           
-        }
-        
-        form .trois{
-            text-align:justify;
-            width : 50%;
-            height:200px;
-           margin-top:30px;
-           
-        }
-       
-        form .trois p{
-            width:300px;
-            margin-top:30px;
-        }
-        form .trois input{
-            min-height: 30px;
-            padding: 5px 10px;
-            outline: none;
-            border: none;
+        .contact-us {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            
-        }
-        .un .trois{
-            margin:50px;
-            padding:10px;
-        }
-        form .trois label {
-            display:block;
-        }
-        .trois button{
-            display:block;
-            margin: 10px;
-            padding: 10px 15px;
-            outline: none;
-            border-radius: 60px;
-            font-size: 16px;
-            background-color: #FF9504;
-            font-size: 17px;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: none;
-        }
-        form .deux{
-            display:flex;
-            flex-direction:column;
-            justify-content:right;
-            text-align:justify;
-           width : 50%;
-          margin-top:50px;
-        }
-        .un .deux{
-            margin:50px;
-            padding:10px;
-        }
-        .un .deux span{
-            width:300px;
-            margin-top:30px;
-        }
-        .photo{
-            width: 400px;
-            height: 200px;
-            background-image:url(images/mishaalzahed-h4x-Tksufvw-unsplash.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            margin-left:auto;
-        }
-        .photo p{
-            
-            text-align:center;
-            color:white;
-        }
-        .photo form{
-            display:block;
-            align-items:center;
-            justify-content:center;
-            margin-top:40px;
-        }
-        .photo form input{
-           
-            min-height: 30px;
-            padding: 5px 10px;
-            outline: none;
-            border: none;
-        }
-        .photo form button{
-           
-            margin: 10px;
-            padding: 10px 15px;
-            outline: none;
-            border-radius: 20px;
-            font-size: 16px;
-            background-color: #FF9504;
-            font-size: 17px;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: none;
-        }
+            text-align: center;
+}
+
+.contact-us h3 {
+    font-size: 24px;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.contact-form,
+.find-us,
+.photo {
+    flex: 1;
+    padding: 10px;
+}
+.photo input{
+    padding : 10px;
+}
+.contact-form h4,
+.find-us h4 {
+    font-size: 18px;
+}
+.find-us{
+    margin-left : 130px;
+}
+.find-us p{
+    width : 300px;
+    padding : 10px;
+}
+.contact-form p {
+    text-align: left;
+}
+
+.column {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.column label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.column input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+}
+
+.send-button,
+.subscribe-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.send-button:hover,
+.subscribe-button:hover {
+    background-color: #555;
+}
+
         .trouver{
+            margin-top : 50px;
             width: 400px;
-            height: 200px;
+            height: 300px;
             background-color:grey;
         }
         .footer{
             width : 100%;
             height: 50px;
             background-color:grey;
-            margin-top: 100px;
+            margin-top: 400px;
         }
+        .navbar span{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 95px;
+            height: 100%;
+            background: linear-gradient(45deg,#4f1919,#ff3333);
+}
+        .navbar a:nth-child(1):hover ~ span{
+            left :0;
+}
 
 </style>
 </head>
 <body>
-<header>
-        <a class="logo" href="./">Item librairie</a>
-        <ul>
-            <li><a href="./">Accueil</a></li>
-            <li class="dessous-nav">
+
+<nav class="navbar">
+        <a href="./" class="logo">Item-librairie</a>
+        <div class="nav-links ">
+            <ul>
+                <li class="active"><a href="./">Accueil</a></li>
+                <li class="dessous-nav">
                 <a href="">Catégories</a>
                     <ul class="sous-nav">
-                        <li><a href="categorie.php">XVe siècles</a></li>
-                        <li><a href="categorie.php">XVIe siècles</a></li>
-                        <li><a href="categorie.php">XVIIe siècles</a></li>
+                        <?php foreach($result as $value) : ?>
+                    <li><a href="categorie.php?id=<?php echo $value['id']; ?>"><?php echo $value['titre'] ; ?></a></li>
+                       
+                        <?php endforeach; ?>
                     </ul>
             </li>
-            <li><a href="../connexion.php">Connexion</a></li>
-            <form action="" method="post">
+                <li><a href="connexion.php">connexion</a></li>
+                <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-            <li><a href="../inscription.php" class="inscription">Inscription</a></li>
-            <li><a href="" class="inscription">Vendre</a></li>
-            <div class="panier"></div>
-        </ul>
+                <li><a href="inscription.php" class="inscription">inscription</a></li>
+                <li><a href="" class="inscription">Vendre</a></li>
+                <a  class ="panier" href=""></a>
+                
+            </ul>
+        </div>
+        <img src="./images/images.png" alt="" class="menu-hamberger">
+    </nav>
+<header>
+
 </header>
 
-
-
+<section class="hero">
+            <h2>Bienvenue dans notre librairie en ligne</h2>
+            <p>Découvrez une vaste collection de livres rares et historiques sur l'Afrique.</p>
+            <a href="#">Parcourir les livres</a>
+        </section>
 <section>
+<section class="nouveautes">
+            <h2>Nouveautés</h2>
+            <div class="livres">
+                <!-- Insérez des éléments de livre ici -->
+            </div>
+        </section>
     <div id ="content">
-        <h3>Dernière Parutions</h3>
+       
             <div id = "posted">
+                <?php
+                    foreach($articles as $article) : 
+                ?>
                 <div class="livres">
-                    <img src="images/Coll85_AfriqueDuSud_Couverture-small.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre1</a>
+                    <img src="<?php echo $article['image']; ?>" alt="">
+                    <p class="title"><?php echo $article["titre"];  ?></p>
                     <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
+                        <button type="submit"><a href="voir.php?id=<?php echo $article['id']; ?>">Voir+</a></button>
                     </div>
                 </div>
-                <div class="livres">
-                    <img src="images/s-L1200.webp" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre2</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/15738219393_HSGD8_1000.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre3</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/image.png" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre4</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/9782218068164_1_75.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre5</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                <div class="livres">
-                    <img src="images/9782845822962-200x303-1.jpeg" width="200px" height="250px" alt="">
-                    <a class="title" href="voir.php">livre6</a>
-                    <div class="ajout">
-                        <button type="submit"><a href="">Voir+</a></button>
-                    </div>
-                </div>
-                
+                <?php endforeach;?>
             </div>
            
     </div>
@@ -316,7 +320,7 @@
 
     <div class="image"></div>
     <div class="recherche">
-        <p>Je recherche un ouvrage , un auteur , un sujet</p><input type="text" name="" id="" placeholder="chercher"></div>
+        <p>Je recherche un ouvrage,un auteur,un sujet</p><input type="text" name="" id="" placeholder="rechercher..."></div>
 </main> 
 
 <section class="bouton">
@@ -325,39 +329,50 @@
     </div>
 </section>
 
-<main class="contactez-nous">
-    <h3>contactez-nous</h3>
-    <form action="" method="post">
-            <div class="un">
-                <div class="trois">
-                    <span>Envoyez-nous un message</span>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum modi quod doloremque molestias ipsum quidem enim tenetur eveniet. Quidem, neque ut aliquid amet reiciendis illum vero ipsum consequatur beatae, perferendis tempora delectus aut iusto quae inventore suscipit corrupti qui exercitationem molestiae! Neque nihil ullam, obcaecati e.</p>
-                    <label for="nom">Nom</label>
-                    <input type="text" name="nom" id="nom">
-                    <label for="email">email</label>
-                    <input type="text" name="email" id="email">
-                    <label for="">Votre question</label>
-                    <input type="text" name="question" id="question">
-                    <button type="button">Envoyez</button>
-                </div>
-               
-           
-                    <div class="deux">
-                        <p>trouvez-nous</p>
-                        <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, repudiandae repellat deserunt iusto necessitatibus mollitia officiis asperiores consectetur accusantium ducimus?</span>
-                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, quibusdam?</span>
-                        <span>Lorem ipsum dolor sit amet.</span>
-                    </div>
-
-                    
+<main class="contact-us">
+    <h3>Contactez-nous</h3>
+    <div class="contact-content">
+        <form action="" method="post" class="contact-form">
+            <div class="column">
+                <h4>Envoyez-nous un message</h4>
+                <p>
+                En soumettant ce formulaire, vous acceptez que les informations saisies soient exploitées dans le cadre d’informations et de la relation commerciale qui peut en découler.
+                </p>
             </div>
-    
+            <div class="column">
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" id="nom">
+
+                <label for="email">Email :</label>
+                <input type="text" name="email" id="email">
+
+                <label for="question">Votre question :</label>
+                <input type="text" name="question" id="question">
+
+                <button type="button" class="send-button">Envoyer</button>
+            </div>
         </form>
-        <div class="photo">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, pariatur.</p>
-        <form action="" method="post">
-            <input type="text" name="" id="">
-            <button type="button">Abonnez-vous</button>
+
+        <div class="find-us">
+            <h4>Retrouvez-nous</h4>
+            <p>
+            votre librairie
+                côte d’ivoire 
+                Abidjan , cocody ,
+                angre gestoci
+                contact@votrelibrairie.com
+                05-65-68-00-44
+            </p>
+            <p>N’hésitez pas à nous faire part de vos recherches ou de vos centres d’intérêt</p>
+            
+        </div>
+    </div>
+
+    <div class="photo">
+        <p>Vous souhaitez recevoir nos articles dès leur parutions?</p>
+        <form action="" method="post" class="subscribe-form">
+            <input type="text" name="email" id="subscribe-email" placeholder="saississez votre e-mail">
+            <button type="button" class="subscribe-button">Abonnez-vous</button>
         </form>
     </div>
 </main>
@@ -368,11 +383,9 @@
    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26171.46258862916!2d-3.9596408046817517!3d5.393056608720285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sci!4v1697122790272!5m2!1sfr!2sci" width="400" height="300" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
    </div>
 </section>
-<section class="footer">
-    <div class="foot">
-   
-    </div>
-</section>
+<footer>
+        <p>&copy; 2023 Librairie en Ligne. Tous droits réservés.</p>
+    </footer>
 
 </body>
 </html>

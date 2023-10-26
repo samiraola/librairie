@@ -1,4 +1,5 @@
 <?php
+require_once "header.php";
 # On se connecte à notre base de donnée
 $connection = mysqli_connect('localhost', 'root', '', 'librairie');
 
@@ -7,11 +8,12 @@ if (!$connection) {
     die("Une erreur est survenue lors de la liason avec la base de donnée. Veuillez réessayer plus tard!");
 }
 
-# Selection de tous les articles dans la bd
-$sql = "SELECT * FROM articles";
+# Selection de tous les paniers dans la bd
+$sql = "SELECT * FROM panier INNER JOIN livres WHERE livres.id = panier.id_article";
 $query = mysqli_query($connection, $sql);
 if ($query) {
     $articles = mysqli_fetch_all($query, MYSQLI_ASSOC);
+    
 } else {
     echo "<script>Une erreur est survenue lors de la récupération des données</script>";
 }
@@ -22,6 +24,26 @@ $nb_query = mysqli_query($connection, $nb_sql);
 if ($nb_query) {
     $nb_panier = mysqli_fetch_assoc($nb_query);
     $nb_panier = $nb_panier['total'];
+}
+
+$requete2 = "SELECT * FROM categorie";
+$query2 = mysqli_query($connection,$requete2);
+
+if($query2){
+    $categories = mysqli_fetch_all($query2,MYSQLI_ASSOC);
+    $catLivres = [];
+
+    if($categories){
+        foreach($categories as $cat){
+            $id_categorie = $cat['id'];
+            $requete = "SELECT * FROM livres WHERE id_categorie = '$id_categorie' ";
+            $query = mysqli_query($connection,$requete);
+            if($query) {
+                $livres = mysqli_fetch_all($query,MYSQLI_ASSOC);
+                $catLivres[]=['livres' => $livres, "categorie" => $cat['titre'], "id_categorie" => $cat['id']];
+            }
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -34,17 +56,29 @@ if ($nb_query) {
     <title>panier</title>
     <link rel="stylesheet" href="../css/pannier.css">
     <style>
-       
+        *{
 
-        .sous-nav{
+        }
+       body {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        overflow-x : hidden;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+        text-align: center;
+    
+}
+/* 
+       .sous-nav{
         list-style: none;
         display: none;
         position: absolute;
         left : 0;
         top : 30px;
         background-color: #fff;
-        width : max-content;
-        padding : 10px;
+        width : 200px;
+        
+       
         }
         .sous-nav li a:hover{
             padding: 6px;
@@ -52,8 +86,12 @@ if ($nb_query) {
            
         }
         .sous-nav li{
-            text-align : center;
+            display: flex;
+            flex-direction : column;
+            justify-content: center;
+            font-weight : bold;
             margin :5px;
+            font-size : 0.8rem;
         }
         .sous-nav li a{
             
@@ -65,21 +103,15 @@ if ($nb_query) {
         .dessous-nav:hover .sous-nav{
         display: block;
         }
+        
 
-       
-
-
-        .helper {
+        .panier {
             display: flex;
             align-items: center;
-            position: relative;
-            gap: 2em;
-            width: 50%;
-            text-align: center;
-            justify-content: space-around;
+            justify-content: right;           
         }
 
-        .helper .number {
+        .panier .number {
             background-color: red;
             border-radius: 100%;
             font-weight: bold;
@@ -91,174 +123,155 @@ if ($nb_query) {
             backdrop-filter: blur(5px);
             box-shadow: 0px 0px 10px 2px #58585830;
         }
+ */
 
-        main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 2em;
-        }
 
-       
 
-        .content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 2em;
-        }
+.pannier {
+    display: flex;
+    flex-direction : column;
+    justify-content:space-evenly;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 0 100px;
+    margin-top : 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-        .content h2 {
-            text-align: center;
-        }
+h2 {
+   
+    font-size: 24px;
+}
 
-        .articles {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 3em;
-            max-width: 1500px;
-            margin: 0 auto;
-        }
+.liste-articles {
+    list-style: none;
+    padding: 0;
+}
 
-        .articleBox {
-            width: 100%;
-            max-width: 400px;
-        }
+.article {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        .imgBox {
-            width: 100%;
-            height: 400px;
-            box-shadow: 0px 0px 5px 1px #5757575c;
-        }
+img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+}
 
-        .imgBox img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.info-article {
+    flex: 1;
+    margin : 5px;
+    text-align: center;
+}
 
-        .infoBox {
-            padding: 20px;
-            background-color: #d1d1d13c;
-            color: #444;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-        }
+h3 {
+    font-size: 18px;
+}
 
-        .price_qty {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }
+input[type="number"] {
+    width: 70px;
+    text-align: center;
+}
+.prix {
+    font-weight: bold;
+}
+.bouton {
+    display : flex;
+    justify-content : center;
+    flex-direction : column;
+    justify-content : right;
+    margin-top : 30px;
+}
+button.supprimer {
+    
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
 
-        .price_qty h4 {
-            color: #0000008e;
-        }
+button.supprimer:hover {
+    background-color: #a00;
+}
+button a{
+    text-decoration: none;
+    color : white;
+}
+.total {
+    text-align: right;
+    font-weight: bold;
+}
 
-        .price_qty * {
-            border: 1px solid;
-            padding: 5px;
-            flex-grow: 1;
-        }
-
-        .price {
-            font-size: 1.2em;
-            font-weight: bold
-        }
-
-        .description {
-            text-align: justify;
-            height: 40px;
-            overflow: hidden;
-        }
-
-        .more {
-            text-decoration: none;
-            border: 1px solid #444;
-            color: #444;
-            padding: 5px;
-            border-radius: 5px;
-            align-self: flex-start;
-        }
-
-        .more:hover {
-            background-color: #44444438;
-        }
     </style>
 </head>
 
 <body>
-    
-    <header>
-        <a class="logo" href="./">Item librairie</a>
-        <ul>
-            <li><a href="./">Accueil</a></li>
-            <li class="dessous-nav">
-                <a href="">Catégories</a>
-                    <ul class="sous-nav">
-                        <li><a href="categorie.php">XVe siècles</a></li>
-                        <li><a href="categorie.php">XVIe siècles</a></li>
-                        <li><a href="categorie.php">XVIIe siècles</a></li>
-                    </ul>
-            </li>
-            <li><a href="deconnexion.php">Deconnexion</a></li>
-            <form action="" method="post">
-                <input type="search" name="search" id="search" placeholder="rechercher">
-            </form>
-            <li><a href="profil.php" class="inscription">Profil</a></li>
-            <li><a href="" class="inscription">Vendre</a></li>
-           
-        </ul>
 
-        <ul class="nav">
-            <li class="helper">
-                <a href="./pannier.php"><span class="number"><?php echo $nb_panier ?? 0; ?></span>Pannier</a>
-            </li>
-        </ul>
-    </header>
-    <main>
         
-        <div class="content">
-            <h2>Articles disponibles</h2>
-            <div class="articles">
-                <?php if (!empty($articles)) : ?>
-                    <?php foreach ($articles as $article) : ?>
-                        <div class="articleBox">
-                            <div class="imgBox">
-                                <img src="<?php echo $article['image'] ?>" alt="<?php echo $article['nom'] ?>">
-                            </div>
-                            <div class="infoBox">
-
-                                <div class="price_qty">
-                                    <h4><?php echo ucwords($article['nom']) ?></h4>
-                                    <p class="price"><?php echo number_format($article['prix'], 2, '.') ?> fcfa</p>
-                                    <p><?php echo $article['stock'] ?></p>
-                                </div>
-                                <div class="description">
-                                    <p><?php echo $article['description'] ?></p>
-                                </div>
-                                <a href="detail.php?article_id=<?php echo $article['id'] ?>" class="more">Detail</a>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <p style="color:#444; padding:10px; background-color: #58585830;">Aucun article disponible pour l'instant</p>
-                <?php endif; ?>
+    <div class="pannier">
+    <h2>Mon Panier</h2>
+    <ul class="liste-articles">
+    <?php if(!empty($articles)): ?>
+                <?php $total = 0; ?>
+            <?php foreach ($articles as $article): ?>
+                <?php $total += $article['prix'] * $article['quantite']; ?>
+                
+        <li class="article">
+            <img src="<?php echo $article['image']; ?> " alt="" >
+            <div class="info-article">
+                <h3><?php echo $article['titre']; ?></h3>
+                <p><input type="number" value="<?php echo $article['quantite']; ?>" id="article<?php echo $article['id']; ?>" min="1"></p>
+                <span class="prix">Prix :  <?php echo number_format ($article['prix'],2,'.'); ?></span>
             </div>
-        </div>
-    </main>
+            <div class="bouton">
+            <!-- <button class="supprimer"><a href="./modifier.php?id=<?php echo $article['id']?>&quantite=<?php echo $article['quantite'] ;?>" >Modifier</a></button><br> -->
+            <button class="supprimer"><a href="#" onclick="updateCart(event, <?php echo $article['id']; ?>)" >Modifier</a></button><br>
+            <button class="supprimer"><a href="./supprimer.php?article_id=<?php echo $article['id']; ?>">Supprimer</a></button><br>
+            </div>
+        </li>
+       
+        <?php endforeach; ?>
+    </ul>
+    
+    <div class="total">
+        <span>TOTAL: <?php echo number_format($total, 2, '.'); ?> FCFA</span>
+    </div>
+    <?php endif; ?>
+</div>
+
 </body>
 <script>
-    document.addEventListener('scroll', () => {
-        if (window.scrollY >= 10) {
-            document.querySelector('#header').classList.add('sticky')
-        } else {
-            document.querySelector('#header').classList.remove('sticky')
-        }
-    })
-</script>
 
+    function updateCart(event, articleId) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+
+        // Récupère la valeur de l'élément <input> en utilisant l'identifiant unique
+        var inputElement = document.getElementById("article" + articleId);
+        var quantite = inputElement.value;
+
+        let url = "./modifier.php?id=" + articleId + "&quantite=" + quantite;
+        window.location.href = url;
+    }
+
+    function deleteCart(event, articleId) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+
+        // Récupère la valeur de l'élément <input> en utilisant l'identifiant unique
+        var inputElement = document.getElementById("article" + articleId);
+
+        if (confirm('Voulez vous réellement supprimer cet article du panier?')) {
+            let url = "./delete.php?article_id=" + articleId;
+            window.location.href = url;
+        }
+
+    }
+</script>
 </html>

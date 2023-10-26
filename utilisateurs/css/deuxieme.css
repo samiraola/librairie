@@ -1,93 +1,217 @@
-
-* {
+*{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow-x : hidden;
 }
-body {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-   
-}
-header {
-    width: 100%;
+header{
     height: 50vh;
-    display: flex;
-    padding: 20px 30px;
-    background-image: url(../images/photo_2023-10-04_16-46-34.jpg) ;
+    max-width: 100vw;
+    background-image: url(../images/johnny-briggs-n5woEfyDobk-unsplash.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    justify-content: space-evenly;
-    align-items: center; 
-    color: #fff; 
-  
-    
 }
-
-header a {
-    text-decoration: none;
-    color: #fff;
-}
-
-header .logo {
-    font-size: 1.8em;
-}
-
-header .logo:hover {
-    
-    color: burlywood;
-    transition: all .2s ease-in-out;
-}
-
-header  ul {
+.navbar{
+    position: absolute;
+    padding: 50px;
     display: flex;
-    justify-content: space-evenly;
-    gap: 1em;
-    list-style: none;
-     align-items: center; 
-    flex-grow: 1;
+    align-items: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    box-sizing: border-box;
 }
+.navbar a{
+    color: white;
+    font-size: 1.2em;
+}
+.navbar .logo{
+    font-size: 2em;
+    font-weight: bold;
+}
+.navbar .nav-links ul{
+    display: flex;
+}
+.navbar .nav-links ul li{
+    margin: 20px 25px;
+    
 
-header ul li {
-    min-width: 100px;
-    padding: 5px;
 }
+ .navbar .nav-links ul li a:hover{
+    color: #ed3c57;
+}  
+.navbar .nav-links ul li.active a{
+    color: #ed3c57;
+    font-weight: 600;
+}
+.navbar .menu-hamberger{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 35px;
+}
+.navbar .menu-hamberger{
+    display: none;
+}
+@media screen and (max-width : 900px) {
+    .navbar .menu-hamberger{
+        display: block;
+    }
+    .navbar{
+        padding: 0;
+    }
+    .navbar .logo{
+        position: absolute;
+        top: 40px;
+        left: 30px;
+    }
+    .navbar .menu-hamberger{
+        display: block;
+    }
+    .nav-links{
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: rgba(255,255,255,0.20);
+        backdrop-filter: blur(8px);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -100%;
+        transition: all 0.5s ease;
+    }
+    .nav-links.mobile-menu{
+        margin-left: 0;
+    
+    }
+    .nav-links ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar .nav-links ul li{
+        margin: 25px 0;
+        font-size: 1.2em;
+    }
+} 
 
-header  ul li a {
-    font-size: 1.1em;
-}
-.sous-nav{
+.navbar .dessous-nav .sous-nav{
     list-style: none;
     display: none;
-    background-color: red;
-}
-
-header ul .inscription {
-   color: black;
+    position: absolute;
+    left : 0;
+    top : 20px;
     background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-}
+    width : 200px;
+    }
+    .sous-nav li a:hover{
+        display: flex;
+        padding: 6px;
+        text-decoration: underline;
+        background-color: #fff;
+        color: #ed3c57;
+       
+    }
+    .sous-nav li {
+        display: flex;
+        flex-direction : column;
+        justify-content: center;
+        font-weight : bold;
+        margin :10px;
+        font-size : 0.8rem;
+    }
+    .sous-nav  li a{
+        color : #000;
+    }
 
-header ul .inscription:hover {
-    padding: 12px;
-    transition: all .2s ease-in-out;
-}
-
-header ul input {
-    min-height: 30px;
-    padding: 5px 10px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-}
-header .panier{
+    .dessous-nav{
+        position: relative;
+    }
+    .dessous-nav:hover .sous-nav{
+    display: block;
+    }
+    .navbar .inscription {
+        color: black;
+         background-color: #fff;
+         padding: 5px 10px;
+         border-radius: 5px;
+     }
+     
+     .navbar .inscription:hover {
+         padding: 12px;
+         transition: all .2s ease-in-out;
+     }
+     
+     .navbar input {
+         min-height: 30px;
+         padding: 5px 10px;
+         margin-top: 20px;
+         outline: none;
+         border: none;
+         border-radius: 5px;
+     }
+.navbar .panier{
     width: 50px;
     height:50px;
+    margin-top: -
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    o,20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,7 +221,7 @@ header .panier{
     background-position: center;
 }
 
-section {
+section{
     flex-grow: 1;
     padding: 20px;
     display: flex;
@@ -115,17 +239,20 @@ section {
 
 #posted {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     gap: 2em;
 }
 
 #posted .livres {
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    box-shadow: 0px 0px 5px 1px #aaa;
-    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: 0.5s;
     background-color: #fff;
 }
 
@@ -134,41 +261,39 @@ section {
     box-shadow: 0px 0px 10px 2px #e1e1e1;
     transition: all .2s ease-in;
 }
-
-#posted .livres img {
-    width: 100%;
-    height: 50%;
-}
-
 #posted .livres .title {
     margin: 0 auto;
     padding: 5px;
     color: #261c85;
     font-weight: 700;
-    width: fit-content;
-}
-
-#posted .livres .title:hover {
-    color: burlywood;
-    font-weight: 900;
-    transition: all .2s ease-in-out;
+    
 }
 #posted .livres .ajout{
-    padding: 20px;
     
+    padding: 20px;
     gap: 1.2em; 
     text-align: center;
     
 }
 #posted .livres .ajout button{
+    
     background-color: burlywood;
 
 }
 #posted .livres .ajout button a{
+    width: 200px;
+    height: 200px;
    text-decoration: none;
     color: black;
     border: none;
     outline: none; 
     
+}
+footer {
+    margin-top: 50px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
 }
 /* section deuxieme */
