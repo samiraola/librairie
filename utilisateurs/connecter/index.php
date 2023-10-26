@@ -1,6 +1,6 @@
 <?php
 session_start();
-$connexion = mysqli_connect ('localhost', 'root','', 'librairie' );
+require_once "../config.php";
 if(!$connexion){
     die('Erreur de connexion à la Base de Donnée');
      }
@@ -27,7 +27,7 @@ if($query1){
     $result = mysqli_fetch_all($query1,MYSQLI_ASSOC);
     
 }
-$requete = "SELECT * FROM livres";
+$requete = "SELECT * FROM livres LIMIT 6";
 $query = mysqli_query($connexion,$requete);
 
 if(!$query){
@@ -72,12 +72,12 @@ if(!$query){
 }
 
         #posted .livres{
-            width : 200px;
-            height : 300px;
+            width : 250px;
+            height : 400px;
         }
         #posted .livres img{
             width : 100%;
-            height : 200px;
+            height : 250px;
         }
         #posted .livres .ajout{
            padding : 30px;
@@ -87,10 +87,12 @@ if(!$query){
             height : 30px;
             border : none;
             background-color: #007bff;
+            
         }
         #posted .livres .ajout button:hover{
             border : 1px solid white;
-
+            background-color: #261c85;;
+            color : white;
         }
         .livres .ajout button a{
             text-decoration: none;
@@ -274,11 +276,11 @@ if(!$query){
                         <?php endforeach; ?>
                     </ul>
             </li>
-                <li><a href="connexion.php">Deconnexion</a></li>
+                <li><a href="../connexion.php">Deconnexion</a></li>
                 <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-                <li><a href="inscription.php" class="inscription">profil</a></li>
+                <li><a href="profil.php" class="inscription">profil</a></li>
                 <li><a href="" class="inscription">Vendre</a></li>
                 <li class="panier">
                 <a href="panier.php" class="panier"><span class="number"><?php echo $nb_panier ?? 0; ?></span></a>
@@ -295,7 +297,7 @@ if(!$query){
 <section class="hero">
             <h2>Bienvenue dans notre librairie en ligne</h2>
             <p>Découvrez une vaste collection de livres rares et historiques sur l'Afrique.</p>
-            <a href="#">Parcourir les livres</a>
+            <a href="../livres.php">Parcourir les livres</a>
         </section>
 <section>
 <section class="nouveautes">

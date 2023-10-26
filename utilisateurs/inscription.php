@@ -35,7 +35,7 @@ if(empty($cpassword)){
 
 //connexion à la base de donnée
 if(!isset($err_firstname) && !isset($err_lastname) && !isset($err_email) && !isset($err_password) && !isset($err_cpassword)){
-    $connexion = mysqli_connect('localhost', 'root','', 'librairie');
+    require_once "config.php";
     if(!$connexion){ die('Erreur de connexion à la Base de Donnée');
     }
     //insertion des données dans la base de données

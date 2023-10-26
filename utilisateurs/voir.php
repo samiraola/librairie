@@ -73,11 +73,8 @@ body {
 nav {
     display: flex;
     padding: 10px 30px;
-    backdrop-filter: blur(8px);
-    background : url(images/johnny-briggs-n5woEfyDobk-unsplash.jpg);
-    background-size : cover;
-    background-repeat : no-repeat;
-    background-position : center;
+
+    background :#007bff;
     justify-content: space-evenly;
     gap: 2em;
     align-items: center;
@@ -96,8 +93,8 @@ nav .logo {
 }
 
 nav .logo:hover {
-    background-color: #ed3c57;
-    color: burlywood;
+    background-color: #007bff;
+    color: #FFFF;
     transition: all .2s ease-in-out;
 }
 
@@ -175,7 +172,7 @@ nav ul input {
             align-items: center;
             justify-content : center;
             background-color:white;
-            border: 5px solid grey;
+            border: 1px solid grey;
         }
         #content h2{
            
@@ -249,7 +246,7 @@ nav ul input {
             color: #ffffff;
             padding: 5px;
             border-radius: 5px;
-            background-color: crimson;
+            background-color: #007bff;
             max-width: auto;
             margin: 0 auto;
         }

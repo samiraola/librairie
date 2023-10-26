@@ -1,6 +1,6 @@
 <?php
 session_start();
-$connexion = mysqli_connect ('localhost', 'root','', 'librairie' );
+require_once "../config.php";
 if(!$connexion){
     die('Erreur de connexion à la Base de Donnée');
      }

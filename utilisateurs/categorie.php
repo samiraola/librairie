@@ -1,7 +1,7 @@
 <?php
 
 # On se connecte à notre base de donnée
-$connexion = mysqli_connect('localhost', 'root', '', 'librairie');
+require_once "config.php";
 
 # Si la connexion n'a pas aboutie, on affiche une erreur
 if (!$connexion) {
@@ -49,80 +49,85 @@ if($query2){
     
     <link rel="stylesheet" href="./css/categorie.css">
 <style>
-    section {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
+
+.category {
     background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align : center;
 }
 
-/* Style du titre de la catégorie */
-h3 {
+
+.category-title {
     font-size: 24px;
     color: #333;
     margin: 0;
+    margin-bottom: 10px;
 }
 
-/* Style du conteneur des livres */
-#content {
+
+.book-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 10px;
+    gap: 20px;
 }
 
-/* Style d'un livre individuel */
-.livres {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
+
+.book {
+    width: calc(33.33% - 20px);
     border: 1px solid #ddd;
     background-color: #fff;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    margin-bottom: 20px;
+    padding: 10px;
 }
 
-.livres:hover {
+.book:hover {
     transform: translateY(-5px);
 }
 
-/* Style de l'image du livre */
-.image img {
+
+.book-image img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
+    border-radius: 5px 5px 0 0;
 }
 
-/* Style du titre du livre */
-.livre p {
+/
+.book-title {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
-}
-
-/* Style du bouton "Voir+" */
-.ajout {
     text-align: center;
 }
 
-.ajout button {
+
+.view-more {
+    text-align: center;
+    margin: 15px;
+}
+
+.view-button {
     background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
     text-transform: uppercase;
-}
-
-.ajout button a {
     text-decoration: none;
-    color: #fff;
+    display: inline-block;
 }
 
-.ajout button:hover {
+.view-button:hover {
     background-color: #0056b3;
 }
+
 </style>
 </head>
 <body>
@@ -157,29 +162,25 @@ h3 {
 
     </header>
 <?php foreach($catLivres as $datas):?>
-<section id="section<?php echo $datas['id_categorie']; ?>">
-    <div id ="content">
-            <h3>
-            <?php echo $datas['categorie'];  ?>
-            </h3>
-                <div id = "posted">
-                    <?php foreach($datas['livres'] as $livre) : ?>
-                    <div class="livres">
-                        <div class="image">
-                            <img src="<?php echo $livre['image']  ?>"  alt="">
-                        </div>
-                        <div class="livre">
-                        <p><?php echo $livre['titre'];   ?></p>
-                        <div class="ajout">
-                            <button type="submit"><a  href="./voir.php?id=<?php echo $livre['id']; ?>" >Voir+</a></button>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
-                        </div>
-                       
+
+<section class="category" id="category-<?php echo $datas['id_categorie']; ?>">
+    <h2 class="category-title"><?php echo $datas['categorie']; ?></h2>
+    <div class="book-list">
+        <?php foreach ($datas['livres'] as $livre) : ?>
+            <div class="book">
+                <div class="book-image">
+                    <img src="<?php echo $livre['image']; ?>" alt="<?php echo $livre['titre']; ?>">
                 </div>
-                
-    </div>    
+                <div class="book-details">
+                    <p class="book-title"><?php echo $livre['titre']; ?></p>
+                    <div class="view-more">
+                        <a class="view-button" href="./voir.php?id=<?php echo $livre['id']; ?>">Voir +</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </section>
+
 <?php endforeach; ?>
 </html>

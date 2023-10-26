@@ -1,22 +1,24 @@
 <?php
+require_once "../utilisateurs/config.php";
 session_start();
-$connexion = mysqli_connect('localhost', 'root','', 'librairie' );
 if(!$connexion){
     die('Erreur de connexion à la Base de Donnée');
-    }
+}else{
+    echo "ok";
+}
 if(!empty($_SESSION['id_admin'])){
-$Id = $_SESSION['id_admin'];
-$selection="SELECT * FROM admin WHERE id_admin='$Id' ";
+$Id_admin = $_SESSION['id_admin'];
+$selection="SELECT * FROM admin WHERE id_admin='$Id_admin' ";
 $query=mysqli_query($connexion,$selection);
 $recuperation=mysqli_fetch_assoc($query);
  
  if($recuperation){
-    // var_dump($recuperation);
- }else{
-    die("utilisateur inconnu");
- }
+    var_dump($recuperation);
 }else{
-    header('LOCATION:../connexion.php');
+    die("utilisateur inconnu");
+}
+}else{
+    header('Location: ./utilisateurs/connexion.php');
 }
 if (isset($recuperation['id_admin'])) {
     if(!empty($_POST['email']) or !empty($_POST['image']) or !empty($_POST['mot_passe'])){
@@ -43,7 +45,7 @@ if (isset($recuperation['id_admin'])) {
         echo $insertion;
         $requette = mysqli_query($connexion, $insertion);
         if($requette){
-            $select = " SELECT * FROM utilisateurs WHERE id_admin = '$Id' ";
+            $select = " SELECT * FROM admin WHERE id_admin = '$Id' ";
             $requete = mysqli_query($connexion, $select);
             $livre = mysqli_fetch_assoc($requete);
             echo "Modification validée";

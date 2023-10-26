@@ -1,5 +1,5 @@
 <?php
-$connexion = mysqli_connect('localhost', 'root', '', 'librairie');
+require_once "../utilisateurs/config.php";
 if (!$connexion) {
     die('Erreur à la connexion');
 }

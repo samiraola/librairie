@@ -1,7 +1,6 @@
 <?php
-$connexion = mysqli_connect('localhost','root', '','librairie');
-
-$requete1 = "SELECT * FROM livres";
+require_once "./utilisateurs/config.php";
+$requete1 = "SELECT * FROM livres LIMIT 6";
 $query1 = mysqli_query($connexion,$requete1);
 
 if(!$query1){
@@ -25,7 +24,7 @@ if($query){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La premiere page</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./utilisateurs/css/index.css">
 <style>
     .hero {
     text-align: center;
@@ -54,12 +53,12 @@ if($query){
 }
 
         #posted .livres{
-            width : 200px;
-            height : 300px;
+            width : 250px;
+            height : 400px;
         }
         #posted .livres img{
             width : 100%;
-            height : 200px;
+            height : 250px;
         }
         #posted .livres .ajout{
            padding : 30px;
@@ -69,6 +68,7 @@ if($query){
             width : 100%;
             height : 30px;
             border : none;
+            color : #fff;
             background-color: #007bff;
         }
         #posted .livres .ajout button:hover{
@@ -250,22 +250,22 @@ if($query){
                 <a href="">Catégories</a>
                     <ul class="sous-nav">
                         <?php foreach($result as $value) : ?>
-                    <li><a href="categorie.php?id=<?php echo $value['id']; ?>"><?php echo $value['titre'] ; ?></a></li>
+                    <li><a href="./utilisateurs/categorie.php?id=<?php echo $value['id']; ?>"><?php echo $value['titre'] ; ?></a></li>
                        
                         <?php endforeach; ?>
                     </ul>
             </li>
-                <li><a href="connexion.php">connexion</a></li>
+                <li><a href="./utilisateurs/connexion.php">connexion</a></li>
                 <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-                <li><a href="inscription.php" class="inscription">inscription</a></li>
-                <li><a href="vendre.php" class="inscription">Vendre</a></li>
-                <a  class ="panier" href="connexion.php"></a>
+                <li><a href="./utilisateurs/inscription.php" class="inscription">inscription</a></li>
+                <li><a href="./utilisateurs/vendre.php" class="inscription">Vendre</a></li>
+                <a  class ="panier" href="./utilisateurs/connexion.php"></a>
                 
             </ul>
         </div>
-        <img src="./images/images.png" alt="" class="menu-hamberger">
+        <img src="./utilisateurs/images/images.png" alt="" class="menu-hamberger">
     </nav>
 <header>
 
@@ -274,7 +274,7 @@ if($query){
 <section class="hero">
             <h2>Bienvenue dans notre librairie en ligne</h2>
             <p>Découvrez une vaste collection de livres rares et historiques sur l'Afrique.</p>
-            <a href="#">Parcourir les livres</a>
+            <a href="livres.php">Parcourir les livres</a>
         </section>
 <section>
 <section class="nouveautes">
@@ -294,6 +294,8 @@ if($query){
                     <p class="title"><?php echo $article["titre"];  ?></p>
                     <div class="ajout">
                         <button type="submit"><a href="voir.php?id=<?php echo $article['id']; ?>">Voir+</a></button>
+                            
+
                     </div>
                 </div>
                 <?php endforeach;?>

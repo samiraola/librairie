@@ -1,12 +1,20 @@
 <?php
+
 # On se connecte à notre base de donnée
-$connexion = mysqli_connect('localhost', 'root', '', 'librairie');
+require_once "../config.php";
 
 # Si la connexion n'a pas aboutie, on affiche une erreur
 if (!$connexion) {
     die("Une erreur est survenue lors de la liason avec la base de donnée. Veuillez réessayer plus tard!");
 }
 
+$requete = "SELECT * FROM categorie";
+$query = mysqli_query($connexion,$requete);
+
+if($query){
+    $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
+    
+}
 $requete2 = "SELECT * FROM categorie";
 $query2 = mysqli_query($connexion,$requete2);
 
@@ -22,10 +30,15 @@ if($query2){
             if($query) {
                 $livres = mysqli_fetch_all($query,MYSQLI_ASSOC);
                 $catLivres[]=['livres' => $livres, "categorie" => $cat['titre'], "id_categorie" => $cat['id']];
+                
             }
         }
     }
 }
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,90 +48,143 @@ if($query2){
     <title>categorie</title>
     <link rel="stylesheet" href="../css/categorie2.css">
 <style>
-        body{
-            background: rgba(250, 153, 22, 0.49);
-        }
-        .sous-nav{
-        list-style: none;
-        display: none;
-        position: absolute;
-        left : 0;
-        top : 30px;
-        background-color: #fff;
-        width : 200px;
-        
-       
-        }
-        .sous-nav li a:hover{
-            padding: 6px;
-            background-color : burlywood;
-           
-        }
-        .sous-nav li{
-            display: flex;
-            flex-direction : column;
-            justify-content: center;
-            font-weight : bold;
-            margin :5px;
-            font-size : 0.8rem;
-        }
-        .sous-nav li a{
-            
-            color : #000;
-        }
-        .dessous-nav{
-            position: relative;
-        }
-        .dessous-nav:hover .sous-nav{
-        display: block;
-        }
-        
+
+    .category {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align : center;
+}
+
+
+.category-title {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align : center;
+}
+
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+.book {
+    width : 300px;
+    height : 400px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+}
+
+.book-image{
+    width : 50%;
+    height : 50%;
+}
+.book-image img {
+    width: 300px;
+    height: 400px;
+    display: block;
+    border-radius: 5px 5px 0 0;
+}
+.book-title {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+}
+.view-more {
+    text-align: center;
+    margin: 15px;
+}
+
+.view-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.view-button:hover {
+    background-color: #0056b3;
+}
+
 
 </style>
 </head>
 <body>
-<header>
-        <a class="logo" href="./">Item librairie</a>
-        <ul>
-            <li><a href="./">Accueil</a></li>
-            <li class="dessous-nav">
+<nav class="navbar">
+        <a href="./" class="logo">Item-librairie</a>
+        <div class="nav-links ">
+            <ul>
+                <li class="active"><a href="./">Accueil</a></li>
+                <li class="dessous-nav">
                 <a href="">Catégories</a>
-                <ul class="sous-nav">
-                    <?php foreach($categories as $valeur) : ?>
-                <li><a href="categorie.php#section<?php echo $valeur['id']; ?>"><?php echo $valeur['titre'] ; ?></a></li>
-                    
-                    <?php endforeach; ?>
-                </ul>
+                    <ul class="sous-nav">
+                        <?php foreach($result as $value) : ?>
+                    <li><a href="categorie.php?id=<?php echo $value['id']; ?>"><?php echo $value['titre'] ; ?></a></li>
+                       
+                        <?php endforeach; ?>
+                    </ul>
             </li>
-            <li><a href="deconnexion.php">Deconnexion</a></li>
-            <form action="" method="post">
+                <li><a href="connexion.php">Deconnexion</a></li>
+                <form action="" method="post">
                 <input type="search" name="search" id="search" placeholder="rechercher">
             </form>
-            <li><a href="profil.php" class="inscription">Profil</a></li>
-            <li><a href="" class="inscription">Vendre</a></li>
-            <div class="panier"></div>
-        </ul>
+                <li><a href="profil.php" class="inscription">profil</a></li>
+                <li><a href="" class="inscription">Vendre</a></li>
+                <li class="panier">
+                <a href="panier.php" class="panier"><span class="number"><?php echo $nb_panier ?? 0; ?></span></a>
+               
+                
+            </ul>
+        </div>
+        <img src="./images/images.png" alt="" class="menu-hamberger">
+    </nav>
+<header>
+
 </header>
 <?php foreach($catLivres as $datas):?>
-<section id="section<?php echo $datas['id_categorie']; ?>">
-    <div id ="content">
-            <h3>
-            <?php echo $datas['categorie'];  ?>
-            </h3>
-                <div id = "posted">
-                    <?php foreach($datas['livres'] as $livre) : ?>
-                    <div class="livres">
-                        <img src="<?php echo $livre['image']  ?>"  alt="">
-                        <p class="title"   ><?php echo $livre['titre'];   ?></p>
-                        <div class="ajout">
-                            <button type="submit"><a  href="detail.php?article_id=<?php echo $livre['id']; ?>" >Voir+</a></button>
-                        </div>
-                        <?php endforeach; ?>
+
+    <section class="category" id="category-<?php echo $datas['id_categorie']; ?>">
+    <h2 class="category-title"><?php echo $datas['categorie']; ?></h2>
+    <div class="book-list">
+        <?php foreach ($datas['livres'] as $livre) : ?>
+            <div class="book">
+                <div class="book-image">
+                    <img src="<?php echo $livre['image']; ?>" alt="<?php echo $livre['titre']; ?>">
+                </div>
+                <div class="book-details">
+                    <p class="book-title"><?php echo $livre['titre']; ?></p>
+                    <div class="view-more">
+                        <a class="view-button" href="./voir.php?id=<?php echo $livre['id']; ?>">Voir +</a>
                     </div>
                 </div>
-                
-    </div>    
+            </div>
+        <?php endforeach; ?>
+    </div>
 </section>
-<?php endforeach; ?>n>
+
+<?php endforeach; ?>
+</html>
 
 

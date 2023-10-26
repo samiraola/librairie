@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-$connexion = mysqli_connect('localhost','root','','librairie');
+require_once "../config.php";
 if(!$connexion){
     die ("connexion échouée");
 }

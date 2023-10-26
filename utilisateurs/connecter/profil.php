@@ -1,6 +1,6 @@
 <?php
 session_start();
-$connexion = mysqli_connect ('localhost', 'root','', 'librairie' );
+require_once "../config.php";
 if(!$connexion){
     die('Erreur de connexion à la Base de Donnée');
      }
@@ -218,115 +218,68 @@ header .panier{
     background-repeat: no-repeat;
     background-position: center;
 }
-main {
-            flex-grow: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        #content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2em;
-            width: 100%;
-            max-width: 1200px;
-        }
+main h4{
+    text-align:center
+    font-size : 35px;
+}
+#profil {
+max-width: 400px;
+margin: 0 auto;
+background-color: #fff;
+justify-content : center; 
+padding: 20px ;
+border: 1px solid #ccc;
+border-radius: 5px;
+text-align: center;
+margin-top : 80px;
+margin-left : 300px;
+}
+#profil img {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+margin: 0 auto 10px;
+display: block;
+}
 
-        #info{
-            display: flex;
-            flex-direction: column;
-            gap: 1.5em;
-           
-            max-width: 400px;
-        }
+form {
+text-align: center;
+}
 
-        #info img{
-            width: 50%;
-            border-radius : 500px;
-           
-        }
+label {
+display: block;
+margin-bottom: 15px;
+}
 
-        #info div p:first-child{
-            font-weight: 700;
-        }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+{
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+outline: none;
+}
 
-        #content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2em;
-            width: 100%;
-            max-width: 1200px;
-        }
+button {
+background-color: #333;
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 3px;
+cursor: pointer;
+}
 
-        #content form {
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5em;
-        }
-
-        #content form h4{
-            text-align: center;
-            text-decoration: underline;
-        }
-
-        #content form .group {
-            display: flex;
-            flex-direction: column;
-        }
-        #content form label {
-            color: #261c85;
-            width: fit-content;
-        }
-        #content form input{
-            border: none;
-            outline: none;
-            border: 1px solid #d4d4d4;
-            padding: 10px;
-            resize: none;
-        }
-        #content form input[type='submit']{
-            cursor: pointer;
-        }
-        #content form input[type='submit'] {
-            width: 100%;
-            max-width: fit-content;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 0 auto;
-            background-color: #261c85;
-            color: #fff;
-            text-align: center;
-        }
-        #content form input[type='submit']:hover {
-            background-color: #3f2fce;
-            border: 1px solid #3f2fce;
-        }
-
-        @media screen and (max-width: 930px) {
-            header {
-                flex-direction: column;
-            }
-        }
-
-        @media screen and (max-width: 730px) {
-            ul {
-                flex-direction: column;
-            }
-
-            header ul form,
-            input {
-                width: 100%;
-            }
-        }
-    </style>
+button:hover {
+background-color: #555;
+}
 
     </style>
+
+
 </head>
 <body>
 <header>
@@ -352,44 +305,45 @@ main {
         </ul>
 </header>
 <main>
-        <div id="content">
-            <h3>Profil</h3>
-            <div id="info">
-                <h4>Mes informations</h4>
-                <div>
+<h3>Profil</h3>
+            
+    <h4>Mes informations</h4>
+        <div id="profil">
+           
+                
                     <img src="<?php echo $recuperation['image']    ?>" alt="">
-                </div>
-                <div>
-                    <p>Nom</p>
-                    <p><?php echo $recuperation['firstname'] ?></p>
-                </div>
-                <div>
-                    <p>Prenoms</p>
-                    <p><?php echo $recuperation['lastname'] ?></p>
-                </div>
-                <div>
-                    <p>Email</p>
-                    <p><?php echo $recuperation['email'] ?></p>
-                </div>
-            </div>
+                
+                
+                    <label>Nom</label>
+                    <input type="text"><?php echo $recuperation['firstname'] ?>
+                
+                
+                    <label>Prenoms</label>
+                    <input type="text"><?php echo $recuperation['lastname'] ?>
+                
+                
+                    <label>Email</label>
+                    <input type="text"><?php echo $recuperation['email'] ?>
+                
+            
             <form action="" method="post">
                 <h4>Modifier mes informations</h4>
-                <div class="group">
+                
                     <label for="email">Modifier l'email</label>
                     <input type="email" name="email" id="email" placeholder="johnDoe@ex.ci"  value="<?php echo $recuperation['email'] ; ?>">
-                </div>
-                <div class="group">
+                
+                
                     <label for="img_url">Modifier le lien de la photo</label>
                     <input type="url" name="img_url" id="img_url" placeholder="https://images.unsplash.com/photo-1696185082767-29f8095a22a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=60" value="<?php echo $recuperation['image'] ; ?>"    >
-                </div>
-                <div class="group">
+                
+                
                     <label for="password">Nouveau mot de passe</label>
                     <input type="password" name="password" id="password" placeholder="nouveau mot de passe"   >
-                </div>
-                <div class="group">
+                
+                
                     <label for="cpassword">Confirmer mot de passe</label>
                     <input type="text" name="cpassword" id="cpassword" placeholder="confirmer le mot de passe"  >
-                </div>
+                
                 <input type="submit" value="Modifier mes informations">
             </form>
         </div>

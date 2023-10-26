@@ -133,7 +133,7 @@ p {
             <li><a href=""><i class="fas fa-calendar-week"></i>Catégories</a></li>
             <li><a href="membres.php"><i class="far fa-question-circle"></i>Membres</a></li>
             <li><a href="profil.php"><i class="fas fa-sliders-h"></i>Mon Profil</a></li>
-            <li><a href=""><i class="far fa-envelope"></i>Deconnexion</a></li>
+            <li><a href="deconnexion.php"><i class="far fa-envelope"></i>Deconnexion</a></li>
         </ul>
     </div>
     <section>

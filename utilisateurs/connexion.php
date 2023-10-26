@@ -9,7 +9,7 @@ session_start();
 
   //connexion à la base de données
 
-  $connexion = mysqli_connect('localhost', 'root','', 'librairie' );
+  require_once "config.php";
   if(!$connexion){
    die('Erreur de connexion à la Base de Donnée');
   }

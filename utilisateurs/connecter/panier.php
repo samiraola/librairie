@@ -1,7 +1,7 @@
 <?php
 require_once "header.php";
 # On se connecte à notre base de donnée
-$connection = mysqli_connect('localhost', 'root', '', 'librairie');
+require_once "../config.php";
 
 # Si la connexion n'a pas aboutie, on affiche une erreur
 if (!$connection) {
